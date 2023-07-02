@@ -1,26 +1,21 @@
-import CredentialsProvider from 'next-auth/providers/credentials';
+import { PrismaAdapter } from '@auth/prisma-adapter';
+import { PrismaClient } from '@prisma/client';
+import GoogleProvider from 'next-auth/providers/google';
 
 import type { NextAuthOptions } from 'next-auth';
+import type { Adapter } from 'next-auth/adapters';
+
+const prisma = new PrismaClient();
 
 export const authOptions: NextAuthOptions = {
+  adapter: PrismaAdapter(prisma) as Adapter,
+  providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+    }),
+  ],
   session: {
     strategy: 'jwt',
   },
-  providers: [
-    CredentialsProvider({
-      name: 'Sign in',
-      credentials: {
-        email: {
-          label: 'Email',
-          type: 'email',
-          placeholder: 'example@example.com',
-        },
-        password: { label: 'Password', type: 'password' },
-      },
-      async authorize() {
-        const user = { id: '1', name: 'Admin', email: 'admin@admin.com' };
-        return user;
-      },
-    }),
-  ],
 };
