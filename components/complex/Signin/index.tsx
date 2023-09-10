@@ -19,8 +19,8 @@ export const Signin = () => {
   };
 
   return (
-    <div>
-      <Form onSubmit={onSubmit}>
+    <div className='flex w-full justify-center gap-20'>
+      <Form onSubmit={onSubmit} className='flex flex-col'>
         <Input
           name='email'
           type='email'
@@ -35,7 +35,11 @@ export const Signin = () => {
         />
         <button type='submit'>Submit</button>
       </Form>
-      <hr />
+      <div className='relative h-min'>
+        <hr className='absolute -left-[76px] -top-[110px] h-px w-44 rotate-90' />
+        <p>OR</p>
+        <hr className='absolute -left-[76px] top-[130px] h-px w-44 rotate-90' />
+      </div>
       <button onClick={handleSignIn}>Sign in with Google</button>
     </div>
   );

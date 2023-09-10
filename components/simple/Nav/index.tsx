@@ -11,7 +11,7 @@ type NavProps = {
   };
 };
 
-export const Navbar: FC<NavProps> = ({ user }) => {
+export const Nav: FC<NavProps> = ({ user }) => {
   return (
     <nav className='flex w-full items-center justify-between gap-x-5 bg-white p-5'>
       <p className='text-black'>Logo</p>

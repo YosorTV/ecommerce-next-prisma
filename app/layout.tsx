@@ -1,7 +1,5 @@
-import { Navbar } from '@/components';
-
-import { getSession } from '../helpers';
 import './globals.css';
+import { BaseLayout } from '@/components/layouts';
 
 export const metadata = {
   title: 'Create Next App',
@@ -13,14 +11,5 @@ type RootLayoutProps = {
 };
 
 export default async function RootLayout({ children }: RootLayoutProps) {
-  const session = await getSession();
-
-  return (
-    <html lang='en'>
-      <body>
-        <Navbar user={session?.user} />
-        {children}
-      </body>
-    </html>
-  );
+  return <BaseLayout>{children}</BaseLayout>;
 }
