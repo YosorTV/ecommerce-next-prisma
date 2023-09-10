@@ -33,12 +33,14 @@
       "@/app/*": ["app/*"],
       "@/assets": ["assets/index"],
       "@/assets/*": ["assets/*"],
-      "@/components": ["app/components/index"],
-      "@/components/*": ["app/components/*"],
+      "@/components": ["components/index"],
+      "@/components/*": ["components/*"],
+      "@/elements": ["components/elements/index"],
+      "@/elements/*": ["components/elements/*"],
       "@/layouts": ["components/layouts/index"],
       "@/layouts/*": ["components/layouts/*"],
-      "@/lib": ["./app/lib/index"],
-      "@/lib/*": ["./app/lib/*"],
+      "@/lib": ["lib/index"],
+      "@/lib/*": ["lib/*"],
       "@/modules": ["components/modules/index"],
       "@/models": ["models/index"],
       "@/models/*": ["models/*"],
@@ -53,7 +55,9 @@
       "@/units": ["components/units/index"],
       "@/units/*": ["components/units/*"],
       "@/utils": ["utils/index"],
-      "@/utils/*": ["utils/*"]
+      "@/utils/*": ["utils/*"],
+      "@/types": ["types/index"],
+      "@/types/*": ["types/*"]
     }
   },
   "include": [
