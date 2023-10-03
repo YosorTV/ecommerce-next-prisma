@@ -17,6 +17,7 @@ export async function POST(request: NextRequest) {
         user,
         session,
       }).success;
+
       return NextResponse.json({ message, data }, { status });
     }
   } catch (err) {

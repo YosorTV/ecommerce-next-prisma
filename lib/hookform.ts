@@ -1,10 +1,19 @@
 import { useForm } from 'react-hook-form';
 
 import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
 
-export const useFormParams = ({ state, validationSchema }: any) => {
-  return useForm({
+type HookFormProps = {
+  state?: any;
+  schema?: Yup.ObjectSchema<any>;
+};
+
+export const useHookFormParams = ({ state, schema }: HookFormProps) => {
+  const methods = useForm({
+    mode: 'all',
     defaultValues: state,
-    resolver: validationSchema ? yupResolver(validationSchema) : null,
+    resolver: schema ? yupResolver(schema) : null,
   });
+
+  return methods;
 };

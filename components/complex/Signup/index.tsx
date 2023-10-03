@@ -29,12 +29,6 @@ export const Signup = () => {
         placeholder='password'
         className='border p-2'
       />
-      {/* <Input
-        name='rePassword'
-        type='password'
-        placeholder='Re-Enter your password'
-        className='border p-2'
-      /> */}
       <button type='submit'>Submit</button>
     </Form>
   );

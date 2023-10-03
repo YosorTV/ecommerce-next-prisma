@@ -5,16 +5,16 @@ import { FormProvider } from 'react-hook-form';
 
 import { FormProps, InputProps } from './types';
 
-import { useFormParams } from '@/lib/hookform';
+import { useHookFormParams } from '@/lib/hookform';
 
 export const Form: FC<FormProps<any>> = ({
   children,
   state = {},
   className,
-  validationSchema = null,
+  schema = null,
   ...rest
 }) => {
-  const methods = useFormParams({ state, validationSchema });
+  const methods = useHookFormParams({ state, schema });
 
   return (
     <FormProvider {...methods}>

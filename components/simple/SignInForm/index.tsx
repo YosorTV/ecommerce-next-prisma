@@ -3,6 +3,7 @@ import { FC } from 'react';
 import { signIn } from 'next-auth/react';
 
 import { Button, Form, Input } from '@/components/elements';
+import { loginSchema } from '@/lib/yup';
 
 export const SignInForm: FC = () => {
   const onSubmit = async (data: any) => {
@@ -15,7 +16,11 @@ export const SignInForm: FC = () => {
   };
 
   return (
-    <Form onSubmit={onSubmit} className='flex flex-col gap-y-5'>
+    <Form
+      schema={loginSchema}
+      onSubmit={onSubmit}
+      className='flex flex-col gap-y-5'
+    >
       <Input name='email' type='email' placeholder='Email address' />
       <Input name='password' type='password' placeholder='Password' />
       <Button

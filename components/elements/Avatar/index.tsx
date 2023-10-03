@@ -12,8 +12,8 @@ interface AvatarProps {
 export const Avatar: FC<AvatarProps> = ({
   path,
   alt,
-  height = 48,
-  width = 48,
+  height = 36,
+  width = 36,
 }) => {
   return (
     <Image
