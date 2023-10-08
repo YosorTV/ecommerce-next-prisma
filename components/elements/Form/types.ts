@@ -14,4 +14,5 @@ export interface FormProps<T> {
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   register?: ReturnType<typeof useForm>['register'];
   error?: string;
+  label?: string;
 }

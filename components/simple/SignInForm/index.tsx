@@ -21,8 +21,18 @@ export const SignInForm: FC = () => {
       onSubmit={onSubmit}
       className='flex flex-col gap-y-5'
     >
-      <Input name='email' type='email' placeholder='Email address' />
-      <Input name='password' type='password' placeholder='Password' />
+      <Input
+        name='email'
+        type='email'
+        label='Email'
+        placeholder='Enter your email address'
+      />
+      <Input
+        name='password'
+        type='password'
+        label='Password'
+        placeholder='Enter your password'
+      />
       <Button
         variant='basic'
         className='mt-2.5 text-2xl text-white hover:bg-black'

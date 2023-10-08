@@ -9,6 +9,16 @@ interface Navigation {
 
 export interface PageLayoutProps {
   children: ReactNode;
+  page?: string;
   navigation?: Navigation[];
   user?: any;
+}
+
+export interface HeaderProps {
+  navigation?: Navigation[];
+  user?: any;
+}
+
+export interface FooterProps {
+  page?: string;
 }

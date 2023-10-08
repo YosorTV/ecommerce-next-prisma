@@ -21,9 +21,6 @@ export const SignInProviders = () => {
       >
         Continue with Facbook
       </Button>
-      <Button variant='basic' className='bg-transparent text-black'>
-        Sign up with email
-      </Button>
     </div>
   );
 };

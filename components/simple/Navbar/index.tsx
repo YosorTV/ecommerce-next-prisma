@@ -1,11 +1,13 @@
+import { FC } from 'react';
+
 import Link from 'next/link';
 
 import { Avatar, Button } from '@/components/elements';
 
-export const Navbar = ({ user, params = [] }: any) => {
+export const Navbar: FC<any> = ({ user, params = [] }) => {
   const prinLinks = params.map(
     ({ href = '', text = '', className = '', ...rest }) => (
-      <Link href={href} className={className} {...rest}>
+      <Link href={href} key={href} className={className} {...rest}>
         {text}
       </Link>
     )

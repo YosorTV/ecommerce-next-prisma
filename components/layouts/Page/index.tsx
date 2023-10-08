@@ -1,29 +1,26 @@
 import { FC } from 'react';
 
+import { Footer, Header, PageTransition } from '@/components';
 import { PageLayoutProps } from '@/types';
 
-import { Navbar } from '@/components/simple';
-import Link from 'next/link';
-
 export const PageLayout: FC<PageLayoutProps> = ({
-  user,
-  children,
   navigation,
+  user,
+  page,
+  children,
 }) => {
   return (
     <>
-      <header className='fixed left-0 top-0 z-50 w-full'>
-        <Navbar params={navigation} user={user} />
-      </header>
-      <main className='flex h-screen flex-col'>{children}</main>
-      <footer className='fixed bottom-0 left-0 flex w-full items-center justify-center border-t border-b-gray-300 bg-white px-9 py-6'>
-        <Link
-          href='/forgot-password'
-          className='font-semibold text-black underline'
+      <Header navigation={navigation} user={user} />
+      <main className='container mx-auto'>
+        <PageTransition
+          page={page}
+          className='mt-[72px] flex h-[calc(100vh-72px)] flex-col'
         >
-          Can`t sign in ?
-        </Link>
-      </footer>
+          {children}
+        </PageTransition>
+      </main>
+      <Footer page={page} />
     </>
   );
 };
