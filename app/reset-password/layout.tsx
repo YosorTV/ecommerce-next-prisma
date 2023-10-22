@@ -1,11 +1,9 @@
-import { authOptions } from '@/lib';
 import { BaseLayoutProps } from '@/types';
-import { getServerSession } from 'next-auth';
 
 import { PageLayout } from '@/components/layouts';
 
 export const metadata = {
-  title: 'Sign in',
+  title: 'Reset Passwrd',
 };
 
 const navigation = [
@@ -17,11 +15,11 @@ const navigation = [
   },
 ];
 
-export default async function LoginLayout({ children }: BaseLayoutProps) {
-  const user = await getServerSession(authOptions);
-
+export default async function ResetPasswordLayout({
+  children,
+}: BaseLayoutProps) {
   return (
-    <PageLayout page='login' user={user} navigation={navigation}>
+    <PageLayout page='reset-password' navigation={navigation}>
       {children}
     </PageLayout>
   );

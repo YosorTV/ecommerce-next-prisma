@@ -1,7 +1,7 @@
-import { signIn } from '@/services';
+import { login } from '@/services';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import { NextAuthOptions } from 'next-auth';
-import Credentials from 'next-auth/providers/credentials';
+import Credentials, { CredentialInput } from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import Stripe from 'stripe';
 
@@ -14,17 +14,16 @@ import { sessionAdapter, tokenAdapter } from '@/adapters/auth';
 export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   adapter: PrismaAdapter(prisma) as Adapter,
-  session: { strategy: 'jwt', maxAge: 24 * 60 * 60 },
+  session: { strategy: 'jwt' },
   pages: {
     signIn: '/login',
   },
   providers: [
     Credentials({
-      name: 'credentials',
-      type: 'credentials',
-      credentials: {} as any,
+      name: 'Credentials',
+      credentials: {} as Record<string, CredentialInput>,
       async authorize({ email, password }) {
-        const { data } = await signIn({ data: { email, password } });
+        const { data } = await login({ data: { email, password } });
 
         if (data) return data;
 

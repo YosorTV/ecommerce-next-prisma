@@ -17,7 +17,7 @@ export const Input = React.forwardRef(
     ref
   ) => {
     return (
-      <div className='flex flex-col gap-y-2'>
+      <div className='relative flex flex-col gap-y-2'>
         <label htmlFor={name} className='text-base text-gray-500'>
           {label}
         </label>
@@ -27,8 +27,19 @@ export const Input = React.forwardRef(
           {...rest}
           type={type}
           placeholder={placeholder}
-          className={`${className} min-w-[354px] cursor-pointer rounded-xl border border-gray-300 px-2 py-3 outline-none hover:border-gray-700`}
+          className={`${className} ${
+            !error ? 'border-gray-300 hover:border-gray-700' : 'border-red-400'
+          } min-w-[354px] cursor-pointer rounded-xl border  px-2 py-3 outline-none`}
         />
+        {error && (
+          <span
+            className={`absolute text-xs text-red-500 ${
+              error.length > 30 ? ' -bottom-8' : '-bottom-4'
+            }`}
+          >
+            *{error}
+          </span>
+        )}
       </div>
     );
   }

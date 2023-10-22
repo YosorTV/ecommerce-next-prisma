@@ -15,20 +15,20 @@ export const Form: FC<FormProps<any>> = ({
   ...rest
 }) => {
   const methods = useHookFormParams({ state, schema });
-
   return (
     <FormProvider {...methods}>
       <form
         onSubmit={methods.handleSubmit(rest?.onSubmit)}
         className={className}
       >
-        {React.Children.map(children, (child) => {
+        {React.Children.map(children, (child, index) => {
           return child.props?.name
             ? React.createElement<InputProps>(child.type, {
                 ...{
                   ...child?.props,
                   register: methods.register,
-                  key: child.props?.name,
+                  key: `${child.props?.name}_${index}`,
+                  error: methods.formState.errors[child.props?.name]?.message,
                 },
               })
             : child;

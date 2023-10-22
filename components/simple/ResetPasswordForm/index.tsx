@@ -1,23 +1,18 @@
 import { FC } from 'react';
 
-import { signIn } from 'next-auth/react';
+import { resetPassword } from '@/services';
 
 import { Button, Form, Input } from '@/components/elements';
 import { schemas } from '@/lib/yup';
 
-export const SignInForm: FC = () => {
+export const ResetPasswordForm: FC = () => {
   const onSubmit = async (data: any) => {
-    await signIn('credentials', {
-      email: data.email,
-      password: data.password,
-      redirect: true,
-      callbackUrl: '/',
-    });
+    await resetPassword({ data });
   };
 
   return (
     <Form
-      schema={schemas.login}
+      schema={schemas['reset-password']}
       onSubmit={onSubmit}
       className='flex flex-col gap-y-5'
     >
@@ -27,17 +22,11 @@ export const SignInForm: FC = () => {
         label='Email'
         placeholder='Enter your email address'
       />
-      <Input
-        name='password'
-        type='password'
-        label='Password'
-        placeholder='Enter your password'
-      />
       <Button
         variant='basic'
-        className='mt-5 text-2xl text-white hover:bg-black'
+        className='mt-5 text-xl text-white hover:bg-black'
       >
-        Sign In
+        Reset password
       </Button>
     </Form>
   );

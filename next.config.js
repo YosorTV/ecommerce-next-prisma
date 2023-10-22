@@ -5,7 +5,6 @@ const nextConfig = {
     appDir: true,
     serverActions: true,
   },
-  reactStrictMode: true,
   env: {
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
@@ -17,14 +16,6 @@ const nextConfig = {
   },
   images: {
     domains: ['lh3.googleusercontent.com'],
-  },
-  webpack: (config) => {
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ['@svgr/webpack'],
-    });
-
-    return config;
   },
 };
 

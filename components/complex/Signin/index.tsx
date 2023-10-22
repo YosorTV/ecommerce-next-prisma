@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { SignInForm, SignInProviders, Title } from '@/components';
 
 export const Signin = () => {

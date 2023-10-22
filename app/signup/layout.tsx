@@ -16,5 +16,9 @@ const navigation = [
 ];
 
 export default async function SignupLayout({ children }: BaseLayoutProps) {
-  return <PageLayout navigation={navigation}>{children}</PageLayout>;
+  return (
+    <PageLayout page='sign-up' navigation={navigation}>
+      {children}
+    </PageLayout>
+  );
 }

@@ -1,10 +1,12 @@
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
 }
 
 datasource db {
   provider = "postgresql"
   url =  env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model Account {
@@ -39,6 +41,7 @@ model User {
   name          String?
   email         String?   @unique
   image         String?
+  emailVerified  DateTime? 
   password      String?
   stripeCustomerId String?
   accounts      Account[]

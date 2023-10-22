@@ -4,6 +4,7 @@ import { signUp } from '@/services';
 import Link from 'next/link';
 
 import { Button, Form, Input } from '@/components/elements';
+import { schemas } from '@/lib/yup';
 
 export const SignUpForm = () => {
   const onSubmit = async (data: any) => {
@@ -11,7 +12,11 @@ export const SignUpForm = () => {
   };
 
   return (
-    <Form onSubmit={onSubmit} className='flex w-full flex-col gap-5'>
+    <Form
+      onSubmit={onSubmit}
+      schema={schemas.signup}
+      className='flex w-full flex-col gap-5'
+    >
       <Input
         name='name'
         type='text'

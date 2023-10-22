@@ -6,11 +6,12 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
 export async function POST(request: NextRequest) {
+  const expirationDate = new Date();
   const user = await createdUserAdapter({ data: await request.json() });
 
   try {
     const accessToken = jwt.sign({ ...user }, process.env.JWT_SECRET, {
-      expiresIn: '1h',
+      expiresIn: expirationDate.setHours(expirationDate.getHours() + 1),
     });
 
     const { data } = await supabase.auth.signUp({

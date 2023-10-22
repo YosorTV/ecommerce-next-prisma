@@ -9,7 +9,7 @@ export const getParams = (options?: any) => {
   };
 };
 
-export const postParams = ({ options, data }: any) => {
+export const postParams = ({ data, options }: any) => {
   return {
     method: 'POST',
     headers: {
@@ -17,7 +17,7 @@ export const postParams = ({ options, data }: any) => {
       'Content-Type': 'application/json',
       ...options,
     },
-    body: JSON.stringify({ ...data }),
+    body: JSON.stringify(data),
   };
 };
 
