@@ -1,12 +1,9 @@
-export const UpdatePassResponseAdapter = () => {
-  const success = {
-    message: 'You have successfully update a password',
-    status: 200,
-  };
+import { hash } from 'bcrypt';
 
-  const existed = {
-    message: 'Provided email not found',
-    status: 404,
+export const UpdateProfileResponseAdapter = () => {
+  const success = {
+    message: 'You have successfully update your password',
+    status: 201,
   };
 
   const error = {
@@ -16,7 +13,24 @@ export const UpdatePassResponseAdapter = () => {
 
   return {
     success,
-    existed,
     error,
+  };
+};
+
+type UpdateProfileTypes = {
+  data: {
+    email: string;
+    password: string;
+  };
+};
+
+export const UpdateProfileAdapter = async ({ data }: UpdateProfileTypes) => {
+  if (!data) return null;
+
+  const password = await hash(data.password, 10);
+
+  return {
+    where: { email: data.email },
+    data: { password },
   };
 };

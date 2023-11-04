@@ -6,8 +6,9 @@ import type { NextRequest } from 'next/server';
 
 export default async function middleware(request: NextRequest) {
   const requestSearchParams = new URLSearchParams(request.nextUrl.search);
-
   const token = requestSearchParams.get('token');
+
+  request.headers.set('path', request.nextUrl.pathname);
 
   if (token) {
     const response = await supabase.auth.verifyOtp({

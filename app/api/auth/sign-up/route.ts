@@ -49,7 +49,6 @@ export async function POST(request: NextRequest) {
         type: 'credentials',
         provider: 'supabase',
         token_type: 'Bearer',
-        expires_at: 24 * 60 * 60,
       },
     });
 

@@ -23,6 +23,7 @@ export const SignUpForm = () => {
         label='How should we call you?'
         placeholder='Enter your profile name'
         className='border p-2'
+        autoComplete='name'
       />
       <Input
         name='email'
@@ -30,6 +31,7 @@ export const SignUpForm = () => {
         label='What is your email?'
         placeholder='Enter your email address'
         className='border p-2'
+        autoComplete='email'
       />
       <Input
         name='password'
@@ -37,6 +39,7 @@ export const SignUpForm = () => {
         label='Create a password'
         placeholder='Enter your password'
         className='border p-2'
+        autoComplete='password'
       />
       <div className='relative top-8 flex flex-col gap-y-5'>
         <p>

@@ -26,12 +26,14 @@ export const SignInForm: FC = () => {
         type='email'
         label='Email'
         placeholder='Enter your email address'
+        autoComplete='email'
       />
       <Input
         name='password'
         type='password'
         label='Password'
         placeholder='Enter your password'
+        autoComplete='password'
       />
       <Button
         variant='basic'

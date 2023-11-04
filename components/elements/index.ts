@@ -3,3 +3,4 @@ export * from '@/components/elements/Avatar';
 export * from '@/components/elements/Form';
 export * from '@/components/elements/Input';
 export * from '@/components/elements/Title';
+export * from '@/components/elements/Product';

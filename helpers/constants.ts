@@ -56,3 +56,10 @@ export const deleteParams = (options: any, body: any) => {
     body: JSON.stringify(body),
   };
 };
+
+export const PRICE_LOCALE = {
+  USD: {
+    style: 'currency',
+    currency: 'USD',
+  },
+};

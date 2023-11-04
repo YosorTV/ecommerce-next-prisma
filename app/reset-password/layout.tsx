@@ -1,3 +1,4 @@
+import { getPageName } from '@/helpers';
 import { BaseLayoutProps } from '@/types';
 
 import { PageLayout } from '@/components/layouts';
@@ -18,8 +19,10 @@ const navigation = [
 export default async function ResetPasswordLayout({
   children,
 }: BaseLayoutProps) {
+  const { page } = getPageName();
+
   return (
-    <PageLayout page='reset-password' navigation={navigation}>
+    <PageLayout page={page} navigation={navigation}>
       {children}
     </PageLayout>
   );

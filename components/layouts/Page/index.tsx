@@ -15,7 +15,7 @@ export const PageLayout: FC<PageLayoutProps> = ({
       <main className='container mx-auto'>
         <PageTransition
           page={page}
-          className='mt-[72px] flex h-[calc(100vh-72px)] flex-col'
+          className='my-[100px] flex h-screen flex-col'
         >
           {children}
         </PageTransition>

@@ -10,14 +10,14 @@ export const SignInProviders = () => {
       <Button
         variant='basic'
         className='bg-transparent text-black'
-        onClick={() => signIn('google')}
+        onClick={() => signIn('google', { callbackUrl: '/' })}
       >
         Continue with Google
       </Button>
       <Button
         variant='basic'
         className='border bg-transparent text-black'
-        onClick={() => signIn('facebook')}
+        onClick={() => signIn('facebook', { callbackUrl: '/' })}
       >
         Continue with Facbook
       </Button>

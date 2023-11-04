@@ -1,6 +1,5 @@
-import { authOptions } from '@/lib';
+import { getPageName, getSession } from '@/helpers';
 import { BaseLayoutProps } from '@/types';
-import { getServerSession } from 'next-auth';
 
 import { PageLayout } from '@/components/layouts';
 
@@ -18,10 +17,11 @@ const navigation = [
 ];
 
 export default async function LoginLayout({ children }: BaseLayoutProps) {
-  const user = await getServerSession(authOptions);
+  const session = await getSession();
+  const { page } = getPageName();
 
   return (
-    <PageLayout page='login' user={user} navigation={navigation}>
+    <PageLayout page={page} user={session} navigation={navigation}>
       {children}
     </PageLayout>
   );

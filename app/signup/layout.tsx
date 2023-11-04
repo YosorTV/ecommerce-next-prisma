@@ -1,3 +1,4 @@
+import { getPageName } from '@/helpers';
 import { BaseLayoutProps } from '@/types';
 
 import { PageLayout } from '@/components/layouts';
@@ -16,8 +17,10 @@ const navigation = [
 ];
 
 export default async function SignupLayout({ children }: BaseLayoutProps) {
+  const { page } = getPageName();
+
   return (
-    <PageLayout page='sign-up' navigation={navigation}>
+    <PageLayout page={page} navigation={navigation}>
       {children}
     </PageLayout>
   );

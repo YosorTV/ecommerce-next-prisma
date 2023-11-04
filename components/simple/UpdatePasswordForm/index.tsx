@@ -3,13 +3,18 @@
 import { FC } from 'react';
 
 import { updatePassword } from '@/services';
+import { useRouter } from 'next/navigation';
 
 import { Button, Form, Input } from '@/components/elements';
 import { schemas } from '@/lib/yup';
 
 export const UpdatePasswordForm: FC = () => {
+  const router = useRouter();
   const onSubmit = async (data: any) => {
-    await updatePassword({ data });
+    const { status } = await updatePassword({ data });
+    if (status === 201) {
+      router.push('/login');
+    }
   };
 
   return (
