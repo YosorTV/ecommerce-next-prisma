@@ -13,10 +13,7 @@ export const PageLayout: FC<PageLayoutProps> = ({
     <>
       <Header navigation={navigation} user={user} />
       <main className='container mx-auto'>
-        <PageTransition
-          page={page}
-          className='my-[100px] flex h-screen flex-col'
-        >
+        <PageTransition page={page} className='my-[100px] flex h-auto flex-col'>
           {children}
         </PageTransition>
       </main>

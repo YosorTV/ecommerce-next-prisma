@@ -22,3 +22,8 @@ export interface HeaderProps {
 export interface FooterProps {
   page?: string;
 }
+
+export type PageProps = {
+  searchParams: any;
+  params: any;
+};

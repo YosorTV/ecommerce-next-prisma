@@ -6,7 +6,7 @@ export const BaseLayout: FC<BaseLayoutProps> = ({ children }) => {
   return (
     <html lang='en'>
       <head />
-      <body>{children}</body>
+      <body className='bg-gray-200'>{children}</body>
     </html>
   );
 };

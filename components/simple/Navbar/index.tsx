@@ -14,7 +14,7 @@ export const Navbar: FC<any> = ({ user, params = [] }) => {
   );
 
   return (
-    <nav className='flex w-full items-center gap-5 border-b border-b-gray-300 bg-white px-9 py-6'>
+    <nav className='flex w-full items-center gap-5 border-b border-b-gray-300 bg-white px-5 py-2.5'>
       <Link href='/'>Logo</Link>
       <div className='flex w-full items-center justify-end'>
         {user ? (

@@ -16,7 +16,7 @@ export const DefaultBtn: FC<ButtonProps> = ({
   return (
     <button
       onClick={onClick}
-      className={`${className} min-w-[354px] rounded-3xl border border-gray-300 bg-gray-700 px-2 py-3 transition-colors  ease-linear hover:border-gray-700`}
+      className={`${className} min-w-[354px] rounded-3xl border border-gray-300 bg-gray-700 px-2 py-3 outline-none transition-colors ease-linear hover:border-gray-700`}
       {...rest}
     >
       {children}

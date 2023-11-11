@@ -1,34 +1,28 @@
 import { FC } from 'react';
 
-import { ButtonProps } from '@/types';
+import { ButtonComponentType, ButtonProps } from '@/types';
 
 import { DefaultBtn } from '@/components/elements/Button/DefaultBtn';
 import { SignInBtn } from '@/components/elements/Button/SignInBtn';
 import { SignOutBtn } from '@/components/elements/Button/SignOutBtn';
 
 export const Button: FC<ButtonProps> = ({
-  type = 'button',
   children,
-  className = '',
+  onClick,
+  type = 'button',
   variant = 'basic',
-  onClick = () => {},
+  className = '',
   ...rest
 }) => {
-  switch (variant) {
-    case 'signIn':
-      return <SignInBtn className={className} />;
-    case 'signOut':
-      return <SignOutBtn className={className} />;
-    default:
-      return (
-        <DefaultBtn
-          {...rest}
-          type={type}
-          onClick={onClick}
-          className={className}
-        >
-          {children}
-        </DefaultBtn>
-      );
-  }
+  const Buttons: ButtonComponentType = {
+    signIn: <SignInBtn className={className} />,
+    signOut: <SignOutBtn className={className} />,
+    basic: (
+      <DefaultBtn {...rest} type={type} onClick={onClick} className={className}>
+        {children}
+      </DefaultBtn>
+    ),
+  };
+
+  return <>{Buttons[variant]}</>;
 };

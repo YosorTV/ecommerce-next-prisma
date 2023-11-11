@@ -7,7 +7,7 @@ export async function GET() {
   const { stripe } = stripeApi();
 
   try {
-    const { data } = await stripe.products.list();
+    const { data } = <Awaited<any>>await stripe.products.list();
     if (data) {
       const products = await productsAdapter({ data });
 
