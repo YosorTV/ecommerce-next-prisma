@@ -1,9 +1,9 @@
 import { FC } from 'react';
 
+import { ProductDetailsProps } from '@/types';
 import Image from 'next/image';
 
 import { Button } from '@/components/elements';
-import { ProductDetailsProps } from '@/types/components';
 
 export const ProductDetails: FC<ProductDetailsProps> = ({ data }) => {
   return (

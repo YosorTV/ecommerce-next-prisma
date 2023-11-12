@@ -14,6 +14,12 @@ export interface PageLayoutProps {
   user?: any;
 }
 
+export interface PageTransitionProps {
+  children: ReactNode;
+  className?: string;
+  page: string;
+}
+
 export interface HeaderProps {
   navigation?: Navigation[];
   user?: any;

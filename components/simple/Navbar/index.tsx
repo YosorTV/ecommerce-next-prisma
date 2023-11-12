@@ -1,8 +1,7 @@
 import { FC } from 'react';
 
+import { Avatar, Button, ShoppingIcon } from '@/components';
 import Link from 'next/link';
-
-import { Avatar, Button } from '@/components/elements';
 
 export const Navbar: FC<any> = ({ user, params = [] }) => {
   const prinLinks = params.map(
@@ -19,10 +18,13 @@ export const Navbar: FC<any> = ({ user, params = [] }) => {
       <div className='flex w-full items-center justify-end'>
         {user ? (
           <div className='flex w-full items-center justify-end gap-x-5'>
-            {user.avatar && (
-              <Avatar path={user.avatar} alt={`${user.name}-logo`} />
-            )}
-            <p>{user.name}</p>
+            <div className='flex items-center justify-center gap-5'>
+              {user.avatar && (
+                <Avatar path={user.avatar} alt={`${user.name}-logo`} />
+              )}
+              <p>{user.name}</p>
+              <ShoppingIcon />
+            </div>
             <Button
               variant='signOut'
               className='text-base font-semibold capitalize text-black'

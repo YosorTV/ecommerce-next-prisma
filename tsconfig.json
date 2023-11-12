@@ -49,7 +49,7 @@
       "@/providers/*": ["providers/*"],
       "@/services": ["services/index"],
       "@/services/*": ["services/*"],
-      "@/store": ["store/store"],
+      "@/store": ["store/index"],
       "@/store/*": ["store/*"],
       "@/styles/*": ["assets/styles/*"],
       "@/units": ["components/units/index"],
