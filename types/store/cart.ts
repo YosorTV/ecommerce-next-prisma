@@ -1,15 +1,15 @@
 type CartItem = {
   name: string;
   id: string;
-  images?: string[];
+  images?: string[] | string;
   description?: string;
   unit_amount: number;
-  quantity: number;
+  quantity?: number;
 };
 
 export type CartState = {
-  cart: {
-    isOpen: boolean;
-    data: CartItem[];
-  };
+  cart: CartItem[];
+  isOpen: boolean;
+  onToggle: () => void;
+  onAdd: (item: CartItem) => void;
 };

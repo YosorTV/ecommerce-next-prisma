@@ -6,3 +6,4 @@ export * from '@/components/elements/Title';
 export * from '@/components/elements/Product';
 export * from '@/components/elements/Icon';
 export * from '@/components/elements/Badge';
+export * from '@/components/elements/Hydrate';

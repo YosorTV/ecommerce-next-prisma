@@ -1,11 +1,17 @@
 import { FC } from 'react';
 
+import { Cart } from '@/components';
 import { ProductDetailsProps } from '@/types';
 import Image from 'next/image';
 
-import { Button } from '@/components/elements';
-
 export const ProductDetails: FC<ProductDetailsProps> = ({ data }) => {
+  const cartData = {
+    id: data.id,
+    image: data.images,
+    name: data.name,
+    unit_amount: data.unit_amount,
+  };
+
   return (
     <article className='flex w-full justify-between'>
       <Image
@@ -24,9 +30,7 @@ export const ProductDetails: FC<ProductDetailsProps> = ({ data }) => {
         <div className='flex gap-2'>
           <p className='font-bold text-teal-700'>{data.unit_amount}</p>
         </div>
-        <Button className='my-12 rounded-md border-none bg-teal-700 px-6 py-2 font-medium text-white hover:bg-teal-800'>
-          Add to cart
-        </Button>
+        <Cart data={cartData} />
       </div>
     </article>
   );

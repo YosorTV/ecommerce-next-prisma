@@ -1,16 +1,9 @@
-import { StoreProps } from '@/types';
+import { CartState } from '@/types';
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
 
-import { cartSlice } from './cart/slice';
+import { cartSlice } from '@/store/cart';
 
-const storage = { name: 'client-state' };
-
-export const useStore = create<StoreProps>()(
-  persist(
-    devtools((...a) => ({
-      ...cartSlice(...a),
-    })),
-    storage
-  )
+export const useCart = create<CartState>()(
+  devtools(persist((...a) => ({ ...cartSlice(...a) }), { name: 'client-cart' }))
 );

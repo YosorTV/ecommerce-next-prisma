@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { Footer, Header, PageTransition } from '@/components';
+import { Footer, Header, Hydrate, PageTransition } from '@/components';
 import { PageLayoutProps } from '@/types';
 
 export const PageLayout: FC<PageLayoutProps> = ({
@@ -10,14 +10,14 @@ export const PageLayout: FC<PageLayoutProps> = ({
   children,
 }) => {
   return (
-    <>
+    <Hydrate>
       <Header navigation={navigation} user={user} />
-      <main className='container mx-auto'>
-        <PageTransition page={page} className='my-[100px] flex h-auto flex-col'>
+      <main className='container mx-auto my-[100px] h-[85vh]'>
+        <PageTransition page={page} className='flex h-full flex-col'>
           {children}
         </PageTransition>
       </main>
       <Footer page={page} />
-    </>
+    </Hydrate>
   );
 };
