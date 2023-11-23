@@ -19,6 +19,7 @@ const navigation = [
 
 export default async function RootLayout({ children }: BaseLayoutProps) {
   const session = await getServerSession(authOptions);
+
   return (
     <PageLayout navigation={navigation} user={session?.user}>
       {children}

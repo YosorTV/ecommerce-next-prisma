@@ -1,7 +1,9 @@
 import { FC } from 'react';
 
-import { Avatar, Button, ShoppingIcon } from '@/components';
+import { Avatar, Button } from '@/components';
 import Link from 'next/link';
+
+import { ShoppingIcon } from '@/assets/icons/ShoppingIcon';
 
 export const Navbar: FC<any> = ({ user, params = [] }) => {
   const prinLinks = params.map(

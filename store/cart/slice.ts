@@ -8,15 +8,31 @@ export const cartSlice: StateCreator<CartState> = (set) => ({
   onAdd: (item) =>
     set((state) => {
       const existedItem = state.cart.find(({ id }) => item.id === id);
+
       if (existedItem) {
-        const updatedCart = state.cart.map((cartItem) => {
-          if (cartItem.id === item.id) {
-            return { ...cartItem, quantity: cartItem.quantity + 1 };
-          }
-          return cartItem;
+        const updatedCart = state.cart.map((el) => {
+          if (el.id === item.id) return { ...el, quantity: el.quantity! + 1 };
+
+          return el;
         });
         return { cart: updatedCart };
       }
+
       return { cart: [...state.cart, { ...item, quantity: 1 }] };
+    }),
+  onRemove: (item) =>
+    set((state) => {
+      const existedItem = state.cart.find((el) => el.id === item.id);
+
+      if (existedItem && existedItem.quantity! > 1) {
+        const updatedCart = state.cart.map((el) => {
+          if (el.id === item.id) return { ...el, quantity: el.quantity! - 1 };
+          return el;
+        });
+
+        return { cart: updatedCart };
+      }
+
+      return { cart: state.cart.filter((el) => el.id !== item.id) };
     }),
 });

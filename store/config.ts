@@ -1,9 +1,9 @@
 import { CartState } from '@/types';
 import { create } from 'zustand';
-import { devtools, persist } from 'zustand/middleware';
+import { persist } from 'zustand/middleware';
 
 import { cartSlice } from '@/store/cart';
 
 export const useCart = create<CartState>()(
-  devtools(persist((...a) => ({ ...cartSlice(...a) }), { name: 'client-cart' }))
+  persist(cartSlice, { name: 'client-cart' })
 );

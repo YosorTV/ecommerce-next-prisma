@@ -13,5 +13,5 @@ export const Hydrate: FC<HydrateProps> = ({ children }) => {
     setHydrated(true);
   }, []);
 
-  return <>{hydrated ? children : <div>Loading...</div>}</>;
+  return hydrated ? children : null;
 };

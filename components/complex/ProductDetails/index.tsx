@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { Cart } from '@/components';
+import { AddCart } from '@/components';
 import { ProductDetailsProps } from '@/types';
 import Image from 'next/image';
 
@@ -30,7 +30,7 @@ export const ProductDetails: FC<ProductDetailsProps> = ({ data }) => {
         <div className='flex gap-2'>
           <p className='font-bold text-teal-700'>{data.unit_amount}</p>
         </div>
-        <Cart data={cartData} />
+        <AddCart data={cartData} />
       </div>
     </article>
   );

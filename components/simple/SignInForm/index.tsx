@@ -37,7 +37,7 @@ export const SignInForm: FC = () => {
       />
       <Button
         variant='basic'
-        className='mt-5 text-2xl text-white hover:bg-black'
+        className='text-md mt-5 text-white hover:bg-black'
       >
         Sign In
       </Button>

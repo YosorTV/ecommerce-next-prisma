@@ -2,7 +2,7 @@ export type ProductProps = {
   id: string;
   name: string;
   images?: string[];
-  unit_amount: number | null;
+  unit_amount: string | null;
   currency: string;
 };
 
@@ -13,7 +13,7 @@ export type ProductListProps = {
 export type ProductDetailsProps = {
   data: {
     name: string;
-    unit_amount: number | null;
+    unit_amount: string | null;
     description?: string;
     images: string;
     id: string;
