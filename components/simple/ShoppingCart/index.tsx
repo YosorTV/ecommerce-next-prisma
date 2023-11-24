@@ -4,9 +4,11 @@ import { useMemo } from 'react';
 
 import { Button } from '@/components';
 import { useCart } from '@/store';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import { CartItem } from '../CartItem';
 
+import { animCart } from '@/assets/animations';
 import { EmptyBasketIcon } from '@/assets/icons';
 
 export const ShoppingCart = () => {
@@ -21,48 +23,59 @@ export const ShoppingCart = () => {
 
   const printCartItems = useMemo(() => {
     return cart?.map((item) => (
-      <CartItem
-        data={item}
+      <motion.div
+        layout
         key={item.id}
-        onAdd={() => onAdd(item)}
-        onRemove={() => onRemove(item)}
-      />
+        className='bg-red mt-5 flex gap-2.5 py-2.5'
+      >
+        <CartItem
+          data={item}
+          onAdd={() => onAdd(item)}
+          onRemove={() => onRemove(item)}
+        />
+      </motion.div>
     ));
   }, [cart, onAdd, onRemove]);
 
-  const printCartCta = useMemo(() => {
-    if (!cart.length)
-      return (
-        <div className='relative flex h-[80vh] w-full flex-col items-center justify-center'>
-          <h2 className='absolute top-[30vh]'>Oops it`s empty ☹️</h2>
-          <EmptyBasketIcon width={246} height={246} />
-        </div>
-      );
-    return (
-      <div className='flex flex-col gap-2.5'>
-        <p>Total: {totalPrice}</p>
-        <Button className='my-6 rounded-full border-none bg-teal-700 px-6 py-2 font-medium text-white hover:bg-teal-800'>
-          Checkout
-        </Button>
-      </div>
-    );
-  }, [cart.length, totalPrice]);
-
   return (
-    isOpen && (
-      <div
-        onClick={handleToggle}
-        className='fixed left-0 top-0 z-20 h-screen w-full bg-black/25'
-      >
-        <div
-          onClick={(e) => e.stopPropagation()}
-          className='absolute right-0 top-0 z-30 h-screen w-[420px] overflow-y-auto bg-white p-8'
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={animCart.fade.initial}
+          animate={animCart.fade.animate}
+          exit={animCart.fade.exit}
+          onClick={handleToggle}
+          className='fixed left-0 top-0 z-20 h-screen w-full bg-black/25'
         >
-          <h1 className='text-md'>Here`s your shopping list</h1>
-          {printCartItems}
-          {printCartCta}
-        </div>
-      </div>
-    )
+          <motion.div
+            layout
+            onClick={(e) => e.stopPropagation()}
+            className='absolute right-0 top-0 z-30 h-screen w-[420px] overflow-y-auto bg-white p-8'
+          >
+            <h1 className='text-md'>Here`s your shopping list</h1>
+            {printCartItems}
+            {!cart.length && (
+              <motion.div
+                initial={animCart.basket.initial}
+                animate={animCart.basket.animate}
+                exit={animCart.basket.exit}
+                className='relative flex h-[80vh] w-full flex-col items-center justify-center'
+              >
+                <h2 className='absolute top-[30vh]'>Oops it`s empty ☹️</h2>
+                <EmptyBasketIcon width={246} height={246} />
+              </motion.div>
+            )}
+            {cart.length > 0 && (
+              <motion.div layout className='flex flex-col gap-2.5'>
+                <p>Total: {totalPrice}</p>
+                <Button className='my-6 rounded-full border-none bg-teal-700 px-6 py-2 font-medium text-white hover:bg-teal-800'>
+                  Checkout
+                </Button>
+              </motion.div>
+            )}
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };

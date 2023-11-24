@@ -10,7 +10,7 @@ import { AddIcon, RemoveIcon } from '@/assets/icons';
 
 export const CartItem: FC<CartItemProps> = ({ data, onAdd, onRemove }) => {
   return (
-    <div className='bg-red mt-5 flex gap-2.5 py-2.5'>
+    <>
       <Image
         src={data.image}
         alt={data.name}
@@ -35,6 +35,6 @@ export const CartItem: FC<CartItemProps> = ({ data, onAdd, onRemove }) => {
         </div>
         <span className='pt-2.5 text-sm'>{data.unit_amount}</span>
       </div>
-    </div>
+    </>
   );
 };
