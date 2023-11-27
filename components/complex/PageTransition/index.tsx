@@ -12,7 +12,7 @@ export const PageTransition: FC<PageTransitionProps> = ({
 }) => {
   const transition = {
     duration: 0.5,
-    ease: 'easeInOut',
+    ease: 'easeOut',
   };
 
   return (

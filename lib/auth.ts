@@ -15,9 +15,7 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   adapter: PrismaAdapter(prisma) as Adapter,
   session: { strategy: 'jwt' },
-  pages: {
-    signIn: '/login',
-  },
+  pages: { signIn: '/login' },
   providers: [
     Credentials({
       name: 'Credentials',
@@ -36,6 +34,22 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   events: {
+    signIn: async ({ user }) => {
+      await prisma.account.update({
+        where: {
+          provider_providerAccountId: {
+            provider: 'supabase',
+            providerAccountId: user.id,
+          },
+        },
+        data: {
+          access_token: user.accessToken,
+          refresh_token: user.refreshToken,
+          expires_at: user.exp as number,
+          token_type: 'Bearer',
+        },
+      });
+    },
     createUser: async ({ user }) => {
       const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
         apiVersion: '2023-08-16',

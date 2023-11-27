@@ -20,7 +20,11 @@ export default async function SignupLayout({ children }: BaseLayoutProps) {
   const { page } = getPageName();
 
   return (
-    <PageLayout page={page} navigation={navigation}>
+    <PageLayout
+      page={page}
+      navigation={navigation}
+      className='flex h-full items-center justify-center'
+    >
       {children}
     </PageLayout>
   );

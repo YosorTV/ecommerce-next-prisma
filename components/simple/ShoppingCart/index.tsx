@@ -50,9 +50,14 @@ export const ShoppingCart = () => {
           <motion.div
             layout
             onClick={(e) => e.stopPropagation()}
-            className='absolute right-0 top-0 z-30 h-screen w-[420px] overflow-y-auto bg-white p-8'
+            className='absolute right-0 top-0 z-30 h-screen w-full overflow-y-auto bg-white p-8 md:w-[420px]'
           >
-            <h1 className='text-md'>Here`s your shopping list</h1>
+            <div className='flex w-full justify-between'>
+              <h1 className='text-md'>Here`s your shopping list</h1>
+              <Button variant='icon' onClick={handleToggle}>
+                X
+              </Button>
+            </div>
             {printCartItems}
             {!cart.length && (
               <motion.div

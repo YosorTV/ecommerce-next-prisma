@@ -1,5 +1,7 @@
 import { ButtonHTMLAttributes, FC, ReactNode } from 'react';
 
+import { cn } from '@/lib';
+
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className: string;
   onClick: () => void;
@@ -16,7 +18,10 @@ export const DefaultBtn: FC<ButtonProps> = ({
   return (
     <button
       onClick={onClick}
-      className={`${className} flex h-10 min-w-[354px] items-center justify-center rounded-full border border-gray-300 bg-gray-700 px-2 py-3 text-sm font-medium outline-none transition-colors ease-linear hover:border-gray-700`}
+      className={cn(
+        'flex min-w-btn items-center justify-center rounded-full border border-gray-300 bg-gray-700 px-2 py-3 text-sm font-medium text-white outline-none transition-colors ease-linear hover:border-gray-700',
+        className
+      )}
       {...rest}
     >
       {children}

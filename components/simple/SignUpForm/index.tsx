@@ -56,7 +56,7 @@ export const SignUpForm = () => {
         </p>
         <Button
           variant='basic'
-          className='w-full text-xl text-white hover:bg-black'
+          className='rounded-full border-none bg-teal-700 py-2.5 font-medium text-white hover:bg-teal-800'
         >
           Create an account
         </Button>

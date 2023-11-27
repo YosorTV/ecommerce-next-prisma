@@ -12,6 +12,7 @@ export interface PageLayoutProps {
   page?: string;
   navigation?: Navigation[];
   user?: any;
+  className?: string;
 }
 
 export interface PageTransitionProps {

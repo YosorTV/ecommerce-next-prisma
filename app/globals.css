@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  .image-details-container {
+    height: 300px;
+    border-radius: 10px;
+    width: 100%;
+    object-fit: cover;
+    object-position: 0px -40px;
+    @media only screen and (min-width: 420px) {
+      height: 400px;
+      object-position: center;
+    }
+    @media only screen and (min-width: 640px) {
+      height: 510px;
+      object-position: center;
+    }
+  }
+}

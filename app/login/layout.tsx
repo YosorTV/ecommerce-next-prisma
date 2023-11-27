@@ -21,7 +21,12 @@ export default async function LoginLayout({ children }: BaseLayoutProps) {
   const { page } = getPageName();
 
   return (
-    <PageLayout page={page} user={session} navigation={navigation}>
+    <PageLayout
+      page={page}
+      user={session}
+      navigation={navigation}
+      className='flex h-full items-center justify-center'
+    >
       {children}
     </PageLayout>
   );

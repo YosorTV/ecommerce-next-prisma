@@ -38,7 +38,7 @@ export const byEmailAdapter = ({ data }: ByEmail) => {
 
 export const userResponseAdapter = () => {
   const success = {
-    message: 'You have successfully registred',
+    message: 'You have been successfully registred, please confirm your email',
     status: 201,
   };
 

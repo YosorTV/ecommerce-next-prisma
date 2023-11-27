@@ -17,19 +17,23 @@ export async function POST(request: NextRequest) {
     );
 
     if (!existedUser) {
-      return NextResponse.json({
-        data: null,
-        message: 'User doesn`t exist',
-        status: 204,
-      });
+      return NextResponse.json(
+        {
+          data: null,
+          message: 'User doesn`t exist',
+        },
+        { status: 204 }
+      );
     }
 
     if (!passwordMatch) {
-      return NextResponse.json({
-        message: 'Incorrect password',
-        data: null,
-        status: 204,
-      });
+      return NextResponse.json(
+        {
+          message: 'Incorrect password',
+          data: null,
+        },
+        { status: 204 }
+      );
     }
 
     const { data: response } = await supabase.auth.signInWithPassword({

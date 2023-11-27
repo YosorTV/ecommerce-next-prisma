@@ -1,63 +1,34 @@
-import { createdUserAdapter, userResponseAdapter } from '@/adapters';
+import {
+  byEmailAdapter,
+  createdUserAdapter,
+  userResponseAdapter,
+} from '@/adapters';
 import { supabase } from '@/lib';
-import jwt from 'jsonwebtoken';
 import { NextRequest, NextResponse } from 'next/server';
 
 import { prisma } from '@/lib/prisma';
+import { createUserData } from '@/services/server';
 
 export async function POST(request: NextRequest) {
-  const expirationDate = new Date();
-  const user = await createdUserAdapter({ data: await request.json() });
+  const { data } = await createdUserAdapter({ data: await request.json() });
+  const existingUser = await prisma.user.findUnique(byEmailAdapter({ data }));
 
-  try {
-    const accessToken = jwt.sign({ ...user }, process.env.JWT_SECRET, {
-      expiresIn: expirationDate.setHours(expirationDate.getHours() + 1),
+  if (!existingUser) {
+    const { data: response } = await supabase.auth.signUp({
+      email: data.email,
+      password: data.password,
     });
 
-    const { data } = await supabase.auth.signUp({
-      email: user.data.email,
-      password: user.data.password,
+    const user = await createUserData({
+      data: { ...data, id: response?.user?.id },
     });
 
-    const userId = data.user.id;
-
-    const existingUser = await prisma.user.findUnique({
-      where: { id: userId },
-    });
-
-    if (existingUser) {
-      const { message, status } = userResponseAdapter().existed;
-      return NextResponse.json({ message }, { status });
-    }
-
-    if (!existingUser) {
-      await prisma.user.create({
-        data: {
-          id: userId,
-          name: user.data.name,
-          email: user.data.email,
-          password: user.data.password,
-        },
-      });
-    }
-
-    const newAcc = await prisma.account.create({
-      data: {
-        userId,
-        providerAccountId: userId,
-        access_token: accessToken,
-        type: 'credentials',
-        provider: 'supabase',
-        token_type: 'Bearer',
-      },
-    });
-
-    if (newAcc) {
+    if (user) {
       const { message, status } = userResponseAdapter().success;
       return NextResponse.json({ message }, { status });
     }
-  } catch (error) {
-    const { message, status } = userResponseAdapter().error;
+  } else {
+    const { message, status } = userResponseAdapter().existed;
     return NextResponse.json({ message }, { status });
   }
 }

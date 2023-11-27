@@ -9,17 +9,24 @@ export const SignInProviders = () => {
     <div className='flex flex-col items-center justify-center gap-5 pb-2.5'>
       <Button
         variant='basic'
-        className='bg-transparent text-black'
+        className='border-none bg-teal-700 outline-none hover:bg-teal-800'
         onClick={() => signIn('google', { callbackUrl: '/' })}
       >
         Continue with Google
       </Button>
       <Button
         variant='basic'
-        className='border bg-transparent text-black'
+        className='border-none bg-teal-700 outline-none hover:bg-teal-800'
         onClick={() => signIn('facebook', { callbackUrl: '/' })}
       >
         Continue with Facbook
+      </Button>
+      <Button
+        variant='basic'
+        className='border-none bg-teal-700 outline-none hover:bg-teal-800'
+        onClick={() => signIn('apple', { callbackUrl: '/' })}
+      >
+        Continue with Apple
       </Button>
     </div>
   );

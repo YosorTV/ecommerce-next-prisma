@@ -29,7 +29,7 @@ export const Input = React.forwardRef(
           placeholder={placeholder}
           className={`${className} ${
             !error ? 'border-gray-300 hover:border-gray-700' : 'border-red-400'
-          } h-11 min-w-[354px] cursor-pointer rounded-full border px-2 py-3 text-sm outline-none`}
+          } h-11 min-w-[300px] cursor-pointer rounded-full border px-2 py-3 text-sm outline-none`}
         />
         {error && (
           <span

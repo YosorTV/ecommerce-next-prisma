@@ -10,13 +10,13 @@ export const ProductsList: FC<ProductListProps> = ({ data }) => {
 
   const printProducts = data.map((product) => (
     <Link
+      key={product.id}
       href={{
         pathname: `product/${product.id}`,
         query: { ...product },
       }}
     >
       <Product
-        key={product.id}
         id={product.id}
         name={product.name}
         images={product.images}
