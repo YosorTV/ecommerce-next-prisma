@@ -8,11 +8,12 @@ export async function POST(request: NextRequest) {
 
   try {
     await prisma.user.update(updatedData);
-    const { message, status } = UpdateProfileResponseAdapter().success;
+
+    const { message, status } = UpdateProfileResponseAdapter('success');
     return NextResponse.json({ message, status }, { status });
   } catch (e) {
     console.error(e);
-    const { message, status } = UpdateProfileResponseAdapter().error;
+    const { message, status } = UpdateProfileResponseAdapter('error');
     return NextResponse.json({ message, status }, { status });
   }
 }

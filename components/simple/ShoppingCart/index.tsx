@@ -2,7 +2,7 @@
 
 import { useMemo } from 'react';
 
-import { Button } from '@/components';
+import { Button, Hydrate } from '@/components';
 import { useCart } from '@/store';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -38,49 +38,51 @@ export const ShoppingCart = () => {
   }, [cart, onAdd, onRemove]);
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          initial={animCart.fade.initial}
-          animate={animCart.fade.animate}
-          exit={animCart.fade.exit}
-          onClick={handleToggle}
-          className='fixed left-0 top-0 z-20 h-screen w-full bg-black/25'
-        >
+    <Hydrate>
+      <AnimatePresence>
+        {isOpen && (
           <motion.div
-            layout
-            onClick={(e) => e.stopPropagation()}
-            className='absolute right-0 top-0 z-30 h-screen w-full overflow-y-auto bg-white p-8 md:w-[420px]'
+            initial={animCart.fade.initial}
+            animate={animCart.fade.animate}
+            exit={animCart.fade.exit}
+            onClick={handleToggle}
+            className='fixed left-0 top-0 z-20 h-screen w-full bg-black/25'
           >
-            <div className='flex w-full justify-between'>
-              <h1 className='text-md'>Here`s your shopping list</h1>
-              <Button variant='icon' onClick={handleToggle}>
-                X
-              </Button>
-            </div>
-            {printCartItems}
-            {!cart.length && (
-              <motion.div
-                initial={animCart.basket.initial}
-                animate={animCart.basket.animate}
-                exit={animCart.basket.exit}
-                className='relative flex h-[80vh] w-full flex-col items-center justify-center'
-              >
-                <h2 className='absolute top-[30vh]'>Oops it`s empty ☹️</h2>
-                <EmptyBasketIcon width={246} height={246} />
-              </motion.div>
-            )}
-            {cart.length > 0 && (
-              <motion.div layout className='flex flex-col gap-2.5'>
-                <p>Total: {totalPrice}</p>
-                <Button className='my-6 rounded-full border-none bg-teal-700 px-6 py-2 font-medium text-white hover:bg-teal-800'>
-                  Checkout
+            <motion.div
+              layout
+              onClick={(e) => e.stopPropagation()}
+              className='absolute right-0 top-0 z-30 h-screen w-full overflow-y-auto bg-white p-8 md:w-[420px]'
+            >
+              <div className='flex w-full justify-between'>
+                <h1 className='text-md'>Here`s your shopping list</h1>
+                <Button variant='icon' onClick={handleToggle}>
+                  X
                 </Button>
-              </motion.div>
-            )}
+              </div>
+              {printCartItems}
+              {!cart.length && (
+                <motion.div
+                  initial={animCart.basket.initial}
+                  animate={animCart.basket.animate}
+                  exit={animCart.basket.exit}
+                  className='relative flex h-[80vh] w-full flex-col items-center justify-center'
+                >
+                  <h2 className='absolute top-[30vh]'>Oops it`s empty ☹️</h2>
+                  <EmptyBasketIcon width={246} height={246} />
+                </motion.div>
+              )}
+              {cart.length > 0 && (
+                <motion.div layout className='flex flex-col gap-2.5'>
+                  <p>Total: {totalPrice}</p>
+                  <Button className='my-6 rounded-full border-none bg-teal-700 px-6 py-2 font-medium text-white hover:bg-teal-800'>
+                    Checkout
+                  </Button>
+                </motion.div>
+              )}
+            </motion.div>
           </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+        )}
+      </AnimatePresence>
+    </Hydrate>
   );
 };

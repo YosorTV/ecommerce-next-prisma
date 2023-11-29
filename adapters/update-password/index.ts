@@ -1,20 +1,27 @@
 import { hash } from 'bcrypt';
 
-export const UpdateProfileResponseAdapter = () => {
-  const success = {
-    message: 'You have successfully update your password',
-    status: 201,
+type Response = {
+  [key: string]: {
+    message: string;
+    status: number;
+  };
+};
+
+type Props = 'success' | 'error';
+
+export const UpdateProfileResponseAdapter = (key: Props) => {
+  const response: Response = {
+    success: {
+      message: 'You have successfully update your password',
+      status: 201,
+    },
+    error: {
+      message: 'Oops something went wrong',
+      status: 500,
+    },
   };
 
-  const error = {
-    message: 'Oops something went wrong',
-    status: 500,
-  };
-
-  return {
-    success,
-    error,
-  };
+  return response[key];
 };
 
 type UpdateProfileTypes = {

@@ -10,7 +10,6 @@ export const SignInForm: FC = () => {
     await signIn('credentials', {
       email: data.email,
       password: data.password,
-      redirect: true,
       callbackUrl: '/',
     });
   };

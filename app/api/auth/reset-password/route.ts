@@ -4,11 +4,11 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
-    const user = await prisma.user.findUnique(
-      byEmailAdapter({ data: await request.json() })
-    );
-    if (user.id) {
-      await supabase.auth.resetPasswordForEmail(user.email);
+    const data = await request.json();
+
+    const existedUser = await prisma.user.findUnique(byEmailAdapter({ data }));
+    if (existedUser) {
+      await supabase.auth.resetPasswordForEmail(existedUser.email);
 
       const { message, status } = ResetPassResponseAdapter().success;
       return NextResponse.json({ message }, { status });

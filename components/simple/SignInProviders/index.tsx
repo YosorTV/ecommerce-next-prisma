@@ -6,7 +6,7 @@ import { Button } from '@/components/elements';
 
 export const SignInProviders = () => {
   return (
-    <div className='flex flex-col items-center justify-center gap-5 pb-2.5'>
+    <div className='flex flex-col items-center justify-center gap-5'>
       <Button
         variant='basic'
         className='border-none bg-teal-700 outline-none hover:bg-teal-800'

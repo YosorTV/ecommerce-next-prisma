@@ -13,7 +13,7 @@ export type ProductListProps = {
 export type ProductDetailsProps = {
   data: {
     name: string;
-    unit_amount: string | number | null;
+    unit_amount: string | null;
     description?: string;
     images: string;
     id: string;

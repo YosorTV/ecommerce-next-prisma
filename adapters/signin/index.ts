@@ -1,11 +1,12 @@
 interface SignInProps {
-  user: {
+  key: 'success' | 'existed' | 'password' | 'error';
+  user?: {
     id: string;
-    name: string;
+    name?: string;
     image?: string | null;
-    email: string;
+    email?: string;
   };
-  session: {
+  session?: {
     token_type: string;
     access_token: string;
     refresh_token: string;
@@ -13,32 +14,52 @@ interface SignInProps {
   };
 }
 
-export const signInResponseAdapter = ({ user, session }: SignInProps) => {
-  if (!user || !session) return null;
+interface Response {
+  [key: string]: {
+    message: string;
+    data?: {
+      id: string;
+      name: string;
+      image?: string | null;
+      email: string;
+      tokenType?: string;
+      accessToken?: string;
+      refreshToken?: string;
+      exp?: string | number;
+    } | null;
+    status?: number;
+  };
+}
 
-  const success = {
-    message: 'Welcome back',
-    data: {
-      id: user.id,
-      name: user.name,
-      image: user.image,
-      email: user.email,
-      tokenType: session.token_type,
-      accessToken: session.access_token,
-      refreshToken: session.refresh_token,
-      exp: session.expires_at,
+export const signInResponseAdapter = ({ user, session, key }: SignInProps) => {
+  const response: Response = {
+    success: {
+      message: 'Welcome back',
+      data: {
+        id: user && user.id,
+        name: user && user.name,
+        image: user && user.image,
+        email: user && user.email,
+        tokenType: session && session.token_type,
+        accessToken: session && session.access_token,
+        refreshToken: session && session.refresh_token,
+        exp: session && session.expires_at,
+      },
+      status: 200,
     },
-    status: 200,
+    error: {
+      message: 'Incorrect credentials',
+      status: 404,
+    },
+    existed: {
+      message: 'Provided email not found',
+      status: 404,
+    },
+    password: {
+      message: 'Incorrect password',
+      status: 404,
+    },
   };
 
-  const error = {
-    message: 'Oops something went wrong',
-    data: {},
-    status: 500,
-  };
-
-  return {
-    success,
-    error,
-  };
+  return response[key];
 };

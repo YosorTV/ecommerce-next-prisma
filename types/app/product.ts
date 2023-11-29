@@ -4,7 +4,7 @@ type Params = {
 
 type SearchedProductParams = {
   name: string;
-  unit_amount: number | string | null;
+  unit_amount: string | null;
   description?: string;
   images: string;
   id: string;
