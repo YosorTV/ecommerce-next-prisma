@@ -7,6 +7,7 @@ import { CartItemProps } from '@/types';
 import Image from 'next/image';
 
 import { AddIcon, RemoveIcon } from '@/assets/icons';
+import { formatPrice } from '@/helpers/formatters';
 
 export const CartItem: FC<CartItemProps> = ({ data, onAdd, onRemove }) => {
   return (
@@ -33,7 +34,7 @@ export const CartItem: FC<CartItemProps> = ({ data, onAdd, onRemove }) => {
             </div>
           </div>
         </div>
-        <span className='pt-2.5 text-sm'>{data.unit_amount}</span>
+        <span className='pt-2.5 text-sm'>{formatPrice(data.unit_amount)}</span>
       </div>
     </>
   );

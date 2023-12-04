@@ -1,4 +1,3 @@
-import { formatPrice } from '@/helpers';
 import { ProductResponse, ProductsResponse } from '@/types';
 
 import { stripeApi } from '@/lib/stripe';
@@ -16,7 +15,7 @@ export const productAdapter = async (product: ProductResponse) => {
     name: product.name,
     images: product.images,
     description: product.description,
-    unit_amount: formatPrice(prices.data[0].unit_amount),
+    unit_amount: prices.data[0].unit_amount,
     currency: prices.data[0].currency,
     metadata: { features },
   };

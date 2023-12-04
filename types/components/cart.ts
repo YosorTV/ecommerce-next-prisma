@@ -3,7 +3,7 @@ export type ProductItem = {
   name: string;
   image?: string;
   quantity?: number | 1;
-  unit_amount: string | null;
+  unit_amount: number | null;
 };
 
 export type CartItemProps = {

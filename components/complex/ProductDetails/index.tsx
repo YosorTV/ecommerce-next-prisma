@@ -4,12 +4,14 @@ import { AddCart } from '@/components';
 import { ProductDetailsProps } from '@/types';
 import Image from 'next/image';
 
+import { formatPrice } from '@/helpers/formatters';
+
 export const ProductDetails: FC<ProductDetailsProps> = ({ data }) => {
   const cartData = {
     id: data.id,
     image: data.images,
     name: data.name,
-    unit_amount: data.unit_amount,
+    unit_amount: Number(data.unit_amount),
   };
 
   return (
@@ -28,7 +30,9 @@ export const ProductDetails: FC<ProductDetailsProps> = ({ data }) => {
           <p className='lg:text-md pb-2 text-base'>{data.description}</p>
         </div>
         <div className='flex gap-2'>
-          <p className='font-bold text-teal-700'>{data.unit_amount}</p>
+          <p className='font-bold text-teal-700'>
+            {formatPrice(data.unit_amount)}
+          </p>
         </div>
         <AddCart data={cartData} />
       </div>

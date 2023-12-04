@@ -3,13 +3,19 @@ export type CartItemType = {
   id: string;
   images?: string[] | string;
   description?: string;
-  unit_amount: string | null;
+  unit_amount: number | null;
   quantity?: number;
 };
 
+type FormKey = 'checkout' | 'cart';
+
 export type CartState = {
   cart: CartItemType[];
+  key: FormKey;
   isOpen: boolean;
+  paymentIntentId: string;
+  setPaymentIntentId: (value: string) => void;
+  setForm: (value: FormKey) => void;
   onToggle: () => void;
   onAdd: (item: CartItemType) => void;
   onRemove: (item: CartItemType) => void;

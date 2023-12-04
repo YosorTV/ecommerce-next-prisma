@@ -51,14 +51,14 @@ export const authOptions: NextAuthOptions = {
       });
     },
     createUser: async ({ user }) => {
-      const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
+      const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
         apiVersion: '2023-08-16',
       });
 
       try {
         const customer = await stripe.customers.create({
-          email: user.email,
-          name: user.name,
+          email: user.email || undefined,
+          name: user.name || undefined,
         });
 
         await prisma.user.update({

@@ -2,6 +2,7 @@ import { FC } from 'react';
 
 import Image from 'next/image';
 
+import { formatPrice } from '@/helpers/formatters';
 import { ProductProps } from '@/types/components';
 
 export const Product: FC<ProductProps> = ({
@@ -28,7 +29,7 @@ export const Product: FC<ProductProps> = ({
       <div className='py-2.5 font-medium'>
         <h1>{name}</h1>
         <h2 className='text-sm text-green-700'>
-          {unit_amount !== null ? unit_amount : 'N/A'}
+          {unit_amount !== null ? formatPrice(unit_amount) : 'N/A'}
         </h2>
       </div>
     </div>

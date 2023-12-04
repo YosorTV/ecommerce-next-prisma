@@ -1,7 +1,7 @@
-import { getPageName } from '@/helpers';
 import { BaseLayoutProps } from '@/types';
 
 import { PageLayout } from '@/components/layouts';
+import { getPageName } from '@/helpers/getters';
 
 export const metadata = {
   title: 'Sign up',

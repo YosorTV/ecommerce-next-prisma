@@ -10,6 +10,7 @@ const nextConfig = {
     STRIPE_PUBLISH_KEY: process.env.STRIPE_PUBLISH_KEY,
     STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
   },
+  reactStrictMode: false,
   images: {
     remotePatterns: [
       {
