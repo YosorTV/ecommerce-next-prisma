@@ -1,4 +1,8 @@
-import { SessionAdapterProps, TokenAdapterProps } from './types';
+import {
+  SessionAdapterProps,
+  SignInAdapterProps,
+  TokenAdapterProps,
+} from './types';
 
 export const sessionAdapter = ({ token }: SessionAdapterProps) => {
   if (!token) throw new Error('UNATHORIZED');
@@ -28,4 +32,15 @@ export const tokenAdapter = ({ token, user }: TokenAdapterProps) => {
   token.picture = user.image;
 
   return token;
+};
+
+export const signInParamsAdapter = (credentials: SignInAdapterProps) => {
+  if (!credentials) return null;
+
+  return {
+    email: credentials.email,
+    password: credentials.password,
+    callbackUrl: '/',
+    redirect: false,
+  };
 };

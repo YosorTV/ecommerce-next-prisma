@@ -1,52 +1,50 @@
-import { byEmailAdapter, signInResponseAdapter } from '@/adapters';
-import { prisma, supabase } from '@/lib';
+import { signInResponseAdapter } from '@/adapters';
 import { compare } from 'bcrypt';
 import { NextRequest, NextResponse } from 'next/server';
 
+import { getUserData } from '@/services/server';
+
 export async function POST(request: NextRequest) {
-  try {
-    const credentials = await request.json();
+  const credentials = await request.json();
 
-    const existedUser = await prisma.user.findUnique(
-      byEmailAdapter({ data: credentials })
-    );
+  const { data, error } = await getUserData({ data: credentials });
 
+  if (error) {
+    const { message, status } = signInResponseAdapter({ key: 'existed' });
+    return NextResponse.json({ message }, { status });
+  }
+
+  if (data.session.provider === 'google') {
+    const response = signInResponseAdapter({
+      key: 'success',
+      user: data.user,
+      session: data.session,
+    });
+
+    const { status, ...rest } = response;
+
+    return NextResponse.json(rest, { status });
+  }
+
+  if (data.session.provider === 'supabase') {
     const passwordMatch = await compare(
       credentials.password,
-      existedUser.password
+      data.user.password
     );
-
-    if (!existedUser) {
-      const { message, status } = signInResponseAdapter({ key: 'existed' });
-      return NextResponse.json({ message }, { status });
-    }
 
     if (!passwordMatch) {
       const { message, status } = signInResponseAdapter({ key: 'password' });
       return NextResponse.json({ message }, { status });
     }
 
-    const { error, data } = await supabase.auth.signInWithPassword({
-      email: existedUser.email,
-      password: existedUser.password,
+    const response = signInResponseAdapter({
+      key: 'success',
+      user: data.user,
+      session: data.session,
     });
 
-    if (!error) {
-      const response = signInResponseAdapter({
-        key: 'success',
-        user: existedUser,
-        session: data.session,
-      });
+    const { status, ...rest } = response;
 
-      const { status, ...rest } = response;
-
-      return NextResponse.json(rest, { status });
-    }
-
-    const { message, status } = signInResponseAdapter({ key: 'error' });
-    return NextResponse.json({ message }, { status });
-  } catch (err) {
-    console.error('err: ', err);
-    return NextResponse.json({ message: err }, { status: err.status });
+    return NextResponse.json(rest, { status });
   }
 }

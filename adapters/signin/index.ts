@@ -48,12 +48,14 @@ export const signInResponseAdapter = ({ user, session, key }: SignInProps) => {
       status: 200,
     },
     error: {
-      message: 'Incorrect credentials',
       status: 404,
+      data: null as null,
+      message: 'Incorrect credentials',
     },
     existed: {
-      message: 'Provided email not found',
       status: 404,
+      data: null as null,
+      message: 'Provided email not found',
     },
     password: {
       message: 'Incorrect password',

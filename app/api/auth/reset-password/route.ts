@@ -11,12 +11,12 @@ export async function POST(request: NextRequest) {
       await supabase.auth.resetPasswordForEmail(existedUser.email);
 
       const { message, status } = ResetPassResponseAdapter().success;
-      return NextResponse.json({ message }, { status });
+      return NextResponse.json({ message, status }, { status });
     }
     const { message, status } = ResetPassResponseAdapter().existed;
-    return NextResponse.json({ message }, { status });
+    return NextResponse.json({ message, status }, { status });
   } catch (e) {
     const { message, status } = ResetPassResponseAdapter().error;
-    return NextResponse.json({ message }, { status });
+    return NextResponse.json({ message, status }, { status });
   }
 }

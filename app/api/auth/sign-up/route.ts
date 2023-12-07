@@ -25,10 +25,10 @@ export async function POST(request: NextRequest) {
 
     if (user) {
       const { message, status } = userResponseAdapter().success;
-      return NextResponse.json({ message }, { status });
+      return NextResponse.json({ message, status }, { status });
     }
   } else {
     const { message, status } = userResponseAdapter().existed;
-    return NextResponse.json({ message }, { status });
+    return NextResponse.json({ message, status }, { status });
   }
 }

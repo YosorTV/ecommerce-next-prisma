@@ -18,14 +18,18 @@ export const authOptions: NextAuthOptions = {
   pages: { signIn: '/login' },
   providers: [
     Credentials({
+      id: 'credentials',
       name: 'Credentials',
       credentials: {} as Record<string, CredentialInput>,
       async authorize({ email, password }) {
-        const { data } = await login({ data: { email, password } });
+        try {
+          const { data, message } = await login({ data: { email, password } });
 
-        if (data) return data;
-
-        return null;
+          if (data) return data;
+          throw new Error(message);
+        } catch (err) {
+          throw new Error(err);
+        }
       },
     }),
     GoogleProvider({
@@ -35,20 +39,22 @@ export const authOptions: NextAuthOptions = {
   ],
   events: {
     signIn: async ({ user }) => {
-      await prisma.account.update({
-        where: {
-          provider_providerAccountId: {
-            provider: 'supabase',
-            providerAccountId: user.id,
+      if (user.id) {
+        await prisma.account.update({
+          where: {
+            provider_providerAccountId: {
+              provider: 'supabase',
+              providerAccountId: user.id,
+            },
           },
-        },
-        data: {
-          access_token: user.accessToken,
-          refresh_token: user.refreshToken,
-          expires_at: user.exp as number,
-          token_type: 'Bearer',
-        },
-      });
+          data: {
+            access_token: user.accessToken,
+            refresh_token: user.refreshToken,
+            expires_at: user.exp as number,
+            token_type: 'Bearer',
+          },
+        });
+      }
     },
     createUser: async ({ user }) => {
       const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {

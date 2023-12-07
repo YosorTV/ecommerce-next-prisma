@@ -19,3 +19,8 @@ export type TokenAdapterProps = {
 export type SessionAdapterProps = {
   token: UserDataProps | any;
 };
+
+export type SignInAdapterProps = {
+  email: string;
+  password: string;
+};

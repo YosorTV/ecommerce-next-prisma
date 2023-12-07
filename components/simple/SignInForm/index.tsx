@@ -1,17 +1,29 @@
+'use client';
+
 import { FC } from 'react';
 
+import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 
+import { signInParamsAdapter } from '@/adapters/auth';
+import { SignInAdapterProps } from '@/adapters/auth/types';
 import { Button, Form, Input } from '@/components/elements';
+import { toaster } from '@/lib/toast';
 import { schemas } from '@/lib/yup';
 
 export const SignInForm: FC = () => {
-  const onSubmit = async (data: any) => {
-    await signIn('credentials', {
-      email: data.email,
-      password: data.password,
-      callbackUrl: '/',
-    });
+  const router = useRouter();
+
+  const onSubmit = async (credentials: SignInAdapterProps) => {
+    const { error, url } = await signIn(
+      'credentials',
+      signInParamsAdapter(credentials)
+    );
+
+    if (error) return toaster({ key: 'error', message: error });
+
+    router.push(url);
+    router.refresh();
   };
 
   return (
