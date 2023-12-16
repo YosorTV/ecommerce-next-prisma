@@ -19,3 +19,25 @@
     }
   }
 }
+
+.slide-in {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgb(15 118 110);
+  transform-origin: top;
+  z-index: 50;
+}
+
+.slide-out {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgb(15 118 110);
+  transform-origin: bottom;
+  z-index: 50;
+}

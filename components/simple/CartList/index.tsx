@@ -3,6 +3,7 @@
 import { FC } from 'react';
 
 import { useCart } from '@/store';
+import { CartItemType } from '@/types';
 import { motion } from 'framer-motion';
 
 import { CartItem } from '../CartItem';
@@ -11,7 +12,6 @@ import { animCart } from '@/assets/animations';
 import { EmptyBasketIcon } from '@/assets/icons';
 import { Button } from '@/components/elements';
 import { formatPrice, formatTotalAmount } from '@/helpers/formatters';
-import { CartItemType } from '@/types';
 
 export const CartList: FC = () => {
   const cartStore = useCart();

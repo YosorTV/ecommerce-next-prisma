@@ -14,3 +14,25 @@ export const getSession = async () => {
 
   return session;
 };
+
+export const getNavigation = (key: string) => {
+  switch (key) {
+    case '/login':
+      return [
+        {
+          id: 1,
+          text: 'Create account',
+          href: '/signup',
+        },
+      ];
+
+    default:
+      return [
+        {
+          id: 1,
+          text: 'Sign In',
+          href: '/login',
+        },
+      ];
+  }
+};

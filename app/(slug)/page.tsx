@@ -2,7 +2,7 @@ import { ProductsList } from '@/components';
 
 import { getProducts } from '@/services/products';
 
-export default async function Home() {
+export default async function RootPage() {
   const { data } = await getProducts();
 
   return (

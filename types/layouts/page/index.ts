@@ -17,8 +17,6 @@ export interface PageLayoutProps {
 
 export interface PageTransitionProps {
   children: ReactNode;
-  className?: string;
-  page: string;
 }
 
 export interface HeaderProps {
@@ -33,4 +31,8 @@ export interface FooterProps {
 export type PageProps = {
   searchParams: any;
   params: any;
+};
+
+export type TemaplateProps = {
+  children: ReactNode;
 };
