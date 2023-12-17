@@ -1,17 +1,15 @@
-import { authOptions, cn } from '@/lib';
-import { getServerSession } from 'next-auth';
+import { cn } from '@/lib';
 
 import { roboto } from '@/assets/fonts';
 import { Footer, Header } from '@/components/simple';
 import { BaseLayoutProps } from '@/types/layouts/base';
 
 export async function BaseLayout({
+  session,
   children,
   navigation,
   page,
 }: BaseLayoutProps) {
-  const session = await getServerSession(authOptions);
-
   return (
     <html lang='en'>
       <head />
