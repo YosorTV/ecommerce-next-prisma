@@ -7,7 +7,7 @@ export type CartItemType = {
   quantity?: number;
 };
 
-type FormKey = 'checkout' | 'cart';
+type FormKey = 'checkout' | 'cart' | 'success';
 
 export type CartState = {
   cart: CartItemType[];
@@ -19,4 +19,5 @@ export type CartState = {
   onToggle: () => void;
   onAdd: (item: CartItemType) => void;
   onRemove: (item: CartItemType) => void;
+  onReset: () => void;
 };

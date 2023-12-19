@@ -1,8 +1,10 @@
 import { FC } from 'react';
 
+import { cn } from '@/lib';
 import { resetPassword } from '@/services';
 
-import { Button, Form, Input } from '@/components/elements';
+import { abril } from '@/assets/fonts';
+import { Button, Form, Input, Title } from '@/components/elements';
 import { toaster } from '@/lib/toast';
 import { schemas } from '@/lib/yup';
 
@@ -19,23 +21,31 @@ export const ResetPasswordForm: FC = () => {
   };
 
   return (
-    <Form
-      schema={schemas['reset-password']}
-      onSubmit={onSubmit}
-      className='flex flex-col gap-y-5'
-    >
-      <Input
-        name='email'
-        type='email'
-        label='Email'
-        placeholder='Enter your email address'
-      />
-      <Button
-        variant='basic'
-        className='rounded-full border-none bg-teal-700 py-2.5 font-medium text-white hover:bg-teal-800'
+    <div className='flex flex-col gap-y-20'>
+      <Title
+        level='1'
+        className={cn('text-center text-5xl underline', abril.className)}
       >
-        Reset
-      </Button>
-    </Form>
+        Reset password
+      </Title>
+      <Form
+        schema={schemas['reset-password']}
+        onSubmit={onSubmit}
+        className='flex flex-col gap-y-5'
+      >
+        <Input
+          name='email'
+          type='email'
+          label='Email'
+          placeholder='Enter your email address'
+        />
+        <Button
+          variant='basic'
+          className='rounded-full border-none bg-teal-700 py-2.5 font-medium text-white hover:bg-teal-800'
+        >
+          Reset
+        </Button>
+      </Form>
+    </div>
   );
 };

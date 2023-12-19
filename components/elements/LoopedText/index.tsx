@@ -5,30 +5,39 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import { imbue } from '@/assets/fonts';
 
-export const LoopedText = () => {
-  const words = ['DROPSOR', 'DROPSOR', 'DROPSOR', 'DROPSOR', 'DROPSOR'];
-
+export const LoopedText = ({
+  repeat,
+  text,
+}: {
+  repeat: number;
+  text: string;
+}) => {
   return (
-    <AnimatePresence>
-      <div
+    <AnimatePresence mode='wait'>
+      <motion.div
+        layout='position'
         className={cn(
           'overflow-hidden whitespace-nowrap text-9xl',
           imbue.className
         )}
       >
-        {words.map((text, index) => (
-          <motion.div
+        {Array.from({ length: repeat }).map((_, index) => (
+          <motion.span
             key={index}
-            style={{ display: 'inline-block', paddingRight: '20px' }}
+            initial={{ translateX: 0 }}
             animate={{ translateX: '-100%' }}
-            initial={{ translateX: '0%' }}
-            exit={{ translateX: '0%' }}
-            transition={{ duration: 5, ease: 'linear', repeat: Infinity }}
+            exit={{ translateX: 0 }}
+            className='z-50 inline-flex px-5 uppercase'
+            transition={{
+              duration: 3,
+              ease: 'linear',
+              repeat: Infinity,
+            }}
           >
             {text}
-          </motion.div>
+          </motion.span>
         ))}
-      </div>
+      </motion.div>
     </AnimatePresence>
   );
 };

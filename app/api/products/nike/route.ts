@@ -14,7 +14,6 @@ export async function GET() {
       return NextResponse.json({ data: products });
     }
   } catch (e) {
-    console.error(e);
-    NextResponse.json({ data: [], error: e });
+    return NextResponse.json({ data: [], error: e });
   }
 }

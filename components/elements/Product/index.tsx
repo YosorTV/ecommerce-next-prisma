@@ -19,7 +19,7 @@ export const Product: FC<ProductProps> = ({
       width={800}
       height={800}
       priority
-      className='h-[40vh] w-full rounded-lg object-cover'
+      className='h-[45vh] w-full border-2 border-gray-950 object-cover'
     />
   ));
 

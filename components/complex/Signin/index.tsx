@@ -1,11 +1,20 @@
 'use client';
 
 import { SignInForm, SignInProviders, Title } from '@/components';
+import { cn } from '@/lib';
+
+import { abril } from '@/assets/fonts';
 
 export const Signin = () => {
   return (
     <div className='relative flex flex-col items-center justify-center gap-y-10 md:gap-y-40 md:pb-20'>
-      <Title level='1' className='text-center text-4xl font-semibold md:pl-12'>
+      <Title
+        level='1'
+        className={cn(
+          'text-center text-5xl underline md:pl-12',
+          abril.className
+        )}
+      >
         Sign In
       </Title>
 

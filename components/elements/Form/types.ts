@@ -9,6 +9,7 @@ export interface FormProps<T> {
   className?: string;
   schema?: Yup.ObjectSchema<any>;
   onSubmit: SubmitHandler<T>;
+  id: string;
 }
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {

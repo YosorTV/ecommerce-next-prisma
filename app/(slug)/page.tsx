@@ -1,5 +1,7 @@
-import { LoopedText, ProductsList } from '@/components';
+import { LoopedText, ProductsList, Title } from '@/components';
+import { cn } from '@/lib';
 
+import { abril } from '@/assets/fonts';
 import { getProducts } from '@/services/products';
 
 export default async function RootPage() {
@@ -7,12 +9,21 @@ export default async function RootPage() {
 
   return (
     <div className='relative flex flex-col gap-y-5'>
-      <div className='absolute -left-10 flex items-center justify-center gap-x-5'>
-        <LoopedText />
+      <div className='absolute -left-full flex items-center justify-center gap-x-5'>
+        <LoopedText text='dropsor' repeat={12} />
       </div>
-      <section className='mt-40 grid grow grid-cols-fluid gap-5'>
-        <ProductsList data={data} />
-      </section>
+
+      <div className='mb-10 mt-44 text-center'>
+        <Title
+          level='1'
+          className={cn('serif text-4xl font-bold underline', abril.className)}
+        >
+          New arrivals
+        </Title>
+        <section className='mt-10 grid grow grid-cols-fluid gap-5 md:gap-10 xl:gap-20'>
+          <ProductsList data={data} />
+        </section>
+      </div>
     </div>
   );
 }

@@ -72,7 +72,7 @@ export const authOptions: NextAuthOptions = {
           data: { stripeCustomerId: customer.id },
         });
       } catch (e) {
-        console.error(e);
+        throw new Error('Error', e);
       }
     },
   },

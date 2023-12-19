@@ -11,17 +11,17 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   rest?: any;
 }
 
-export const DefaultBtn: FC<ButtonProps> = ({
+export const TextButton: FC<ButtonProps> = ({
   onClick,
   children,
-  className = 'text-white',
+  className,
   rest,
 }) => {
   return (
     <button
       onClick={onClick}
       className={cn(
-        'flex min-w-btn items-center justify-center border border-gray-300 bg-gray-800 px-2 py-3 text-lg font-medium text-white outline-none transition-colors ease-linear hover:bg-gray-950',
+        'flex min-w-btn items-center justify-start text-2xl text-gray-900 underline',
         lobster.className,
         className
       )}

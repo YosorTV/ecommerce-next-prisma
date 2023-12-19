@@ -6,8 +6,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { usePathname, useRouter } from 'next/navigation';
 import { Session } from 'next-auth';
 
-import { pageVariant } from '@/assets/animations';
-
 interface ILayoutProps {
   children: ReactNode;
   session: Session;
@@ -31,20 +29,7 @@ export const PageTransition: FC<ILayoutProps> = ({ children, session }) => {
         layout='position'
         className='container relative top-16 flex min-h-[87vh] flex-col'
       >
-        <motion.div
-          initial='start'
-          animate='animate'
-          exit='end'
-          variants={pageVariant}
-          transition={{
-            duration: 0.7,
-            type: 'tween',
-            ease: 'easeInOut',
-          }}
-          className='flex-1 flex-grow'
-        >
-          {children}
-        </motion.div>
+        <div className='flex-1 flex-grow'>{children}</div>
 
         <motion.div
           className='slide-in'
@@ -54,7 +39,7 @@ export const PageTransition: FC<ILayoutProps> = ({ children, session }) => {
           transition={{
             duration: 0.5,
             type: 'tween',
-            ease: 'easeInOut',
+            ease: 'linear',
           }}
         />
         <motion.div
@@ -65,7 +50,7 @@ export const PageTransition: FC<ILayoutProps> = ({ children, session }) => {
           transition={{
             duration: 0.5,
             type: 'tween',
-            ease: 'easeInOut',
+            ease: 'linear',
           }}
         />
       </motion.main>

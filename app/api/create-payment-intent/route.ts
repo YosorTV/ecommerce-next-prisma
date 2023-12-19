@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
 
   const { totalPrice } = formatTotalAmount(items);
 
-  const orederData = {
+  const orderData = {
     user: { connect: { id: session.user.id } },
     amount: totalPrice,
     currency: 'usd',
@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
 
         if (existedOrder) {
           await prisma.order.update({
-            where: { id: existedOrder.id },
+            where: { paymentIntentId: updatedIntent.id },
             data: {
               amount: totalPrice,
               products: {
@@ -77,9 +77,11 @@ export async function POST(request: NextRequest) {
         automatic_payment_methods: { enabled: true },
       });
 
+      await prisma.product.deleteMany();
+
       const newOrder = await prisma.order.create({
         data: {
-          ...orederData,
+          ...orderData,
           paymentIntentId: paymentIntent.id,
         },
       });

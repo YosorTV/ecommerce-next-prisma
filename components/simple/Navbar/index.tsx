@@ -4,6 +4,7 @@ import { Avatar, Button } from '@/components';
 import { cn } from '@/lib';
 import Link from 'next/link';
 
+import { abril } from '@/assets/fonts';
 import { ShoppingIcon } from '@/assets/icons/ShoppingIcon';
 
 export const Navbar: FC<any> = ({ user, params = [] }) => {
@@ -11,7 +12,11 @@ export const Navbar: FC<any> = ({ user, params = [] }) => {
     <Link
       href={href}
       key={href}
-      className={cn('text-lg font-semibold text-teal-700', className)}
+      className={cn(
+        'text-xl text-gray-950 underline',
+        abril.className,
+        className
+      )}
       {...rest}
     >
       {text}
@@ -22,23 +27,27 @@ export const Navbar: FC<any> = ({ user, params = [] }) => {
     <nav className='flex w-full items-center gap-5 border-b border-b-gray-300 bg-white px-5 py-2.5'>
       <Link href='/'>Logo</Link>
       <div className='relative flex w-full items-center justify-end'>
-        {user ? (
-          <div className='flex w-full items-center justify-end gap-x-5'>
-            <div className='flex items-center justify-center gap-5'>
-              {user.avatar && (
-                <Avatar path={user.avatar} alt={`${user.name}-logo`} />
-              )}
-              <p>{user.name}</p>
-              <ShoppingIcon />
+        <div className='flex w-full items-center justify-end gap-x-5'>
+          <ShoppingIcon />
+          {user ? (
+            <>
+              <div className='flex items-center justify-center gap-5'>
+                {user.avatar && (
+                  <Avatar path={user.avatar} alt={`${user.name}-logo`} />
+                )}
+                <p>{user.name}</p>
+              </div>
+              <Button
+                variant='signOut'
+                className='text-base font-semibold capitalize text-black'
+              />
+            </>
+          ) : (
+            <div className='flex items-center gap-x-5'>
+              {params.map(prinLinks)}
             </div>
-            <Button
-              variant='signOut'
-              className='text-base font-semibold capitalize text-black'
-            />
-          </div>
-        ) : (
-          params.map(prinLinks)
-        )}
+          )}
+        </div>
       </div>
     </nav>
   );
