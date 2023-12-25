@@ -9,6 +9,8 @@ export const metadata = {
 
 export default function Layout({ children }: BaseLayoutProps) {
   return (
-    <PageLayout className='flex h-full justify-start'>{children}</PageLayout>
+    <PageLayout className='container flex w-full justify-center pb-10'>
+      {children}
+    </PageLayout>
   );
 }

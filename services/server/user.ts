@@ -3,7 +3,7 @@
 import { byEmailAdapter } from '@/adapters';
 import { prisma } from '@/lib';
 
-export const getUserData = async ({ data }) => {
+export const getUserData = async ({ data }: { data: any }) => {
   const user = await prisma.user.findUnique(byEmailAdapter({ data }));
 
   if (user) {

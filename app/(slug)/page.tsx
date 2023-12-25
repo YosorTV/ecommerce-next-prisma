@@ -8,12 +8,12 @@ export default async function RootPage() {
   const { data } = await getProducts();
 
   return (
-    <div className='relative flex flex-col gap-y-5'>
-      <div className='absolute -left-full flex items-center justify-center gap-x-5'>
+    <div className='flex flex-col'>
+      <div className='flex items-center justify-center gap-x-5 overflow-hidden'>
         <LoopedText text='dropsor' repeat={12} />
       </div>
 
-      <div className='mb-10 mt-44 text-center'>
+      <div className='container pt-5 text-center'>
         <Title
           level='1'
           className={cn('serif text-4xl font-bold underline', abril.className)}

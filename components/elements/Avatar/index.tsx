@@ -6,14 +6,17 @@ interface AvatarProps {
   path: string;
   height?: number;
   width?: number;
+  rest?: any;
   alt?: string;
+  tabIndex: number;
 }
 
 export const Avatar: FC<AvatarProps> = ({
   path,
   alt,
-  height = 36,
-  width = 36,
+  height = 40,
+  width = 40,
+  ...rest
 }) => {
   return (
     <Image
@@ -21,7 +24,8 @@ export const Avatar: FC<AvatarProps> = ({
       alt={alt}
       height={height}
       width={width}
-      className='rounded-full'
+      className='shadow-avatar rounded-full p-1'
+      {...rest}
     />
   );
 };

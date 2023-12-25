@@ -5,8 +5,8 @@ import { FC } from 'react';
 import { Button } from '@/components';
 import { CartItemProps } from '@/types';
 import Image from 'next/image';
+import { IoAddCircle, IoRemoveCircle } from 'react-icons/io5';
 
-import { AddIcon, RemoveIcon } from '@/assets/icons';
 import { formatPrice } from '@/helpers/formatters';
 
 export const CartItem: FC<CartItemProps> = ({ data, onAdd, onRemove }) => {
@@ -26,10 +26,10 @@ export const CartItem: FC<CartItemProps> = ({ data, onAdd, onRemove }) => {
             <p className='text-md'>Quantity: {data.quantity}</p>
             <div className='flex gap-x-1.5'>
               <Button variant='icon' onClick={onRemove}>
-                <AddIcon height={18} width={18} />
+                <IoRemoveCircle />
               </Button>
               <Button variant='icon' onClick={onAdd}>
-                <RemoveIcon height={18} width={18} />
+                <IoAddCircle />
               </Button>
             </div>
           </div>

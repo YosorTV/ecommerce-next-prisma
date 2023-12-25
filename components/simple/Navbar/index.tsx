@@ -1,11 +1,14 @@
 import { FC } from 'react';
 
-import { Avatar, Button } from '@/components';
+import { Avatar, Button, Hydrate, ThemeChange } from '@/components';
 import { cn } from '@/lib';
+import Image from 'next/image';
 import Link from 'next/link';
-
 import { abril } from '@/assets/fonts';
 import { ShoppingIcon } from '@/assets/icons/ShoppingIcon';
+
+// eslint-disable-next-line import/extensions
+import Logo from '@/public/DSLogo.svg';
 
 export const Navbar: FC<any> = ({ user, params = [] }) => {
   const prinLinks = ({ href = '', text = '', className = '', ...rest }) => (
@@ -24,23 +27,47 @@ export const Navbar: FC<any> = ({ user, params = [] }) => {
   );
 
   return (
-    <nav className='flex w-full items-center gap-5 border-b border-b-gray-300 bg-white px-5 py-2.5'>
-      <Link href='/'>Logo</Link>
+    <nav className='flex w-full items-center gap-5 border-b border-b-gray-300 px-5 py-2.5'>
+      <Link href='/'>
+        <Image height={80} width={100} src={Logo} alt='logo' />
+      </Link>
       <div className='relative flex w-full items-center justify-end'>
         <div className='flex w-full items-center justify-end gap-x-5'>
           <ShoppingIcon />
+          <Hydrate>
+            <ThemeChange />
+          </Hydrate>
           {user ? (
             <>
-              <div className='flex items-center justify-center gap-5'>
-                {user.avatar && (
-                  <Avatar path={user.avatar} alt={`${user.name}-logo`} />
-                )}
-                <p>{user.name}</p>
-              </div>
-              <Button
-                variant='signOut'
-                className='text-base font-semibold capitalize text-black'
-              />
+              {user.avatar && (
+                <div className='dropdown-end dropdown flex cursor-pointer items-center justify-center gap-5'>
+                  <Avatar
+                    path={user.avatar}
+                    alt={`${user.name}-logo`}
+                    tabIndex={-1}
+                  />
+                  <ul
+                    tabIndex={0}
+                    className='dropdown-content menu top-12 min-w-btn space-y-2.5 rounded-sm bg-base-100 shadow'
+                  >
+                    <li>
+                      <Link
+                        href='/dashboard'
+                        className='text-base font-semibold'
+                      >
+                        Orders
+                      </Link>
+                    </li>
+                    <li>
+                      <Button
+                        variant='signOut'
+                        className='text-base font-semibold capitalize hover:bg-none'
+                      />
+                    </li>
+                  </ul>
+                </div>
+              )}
+              {/* <p>{user.name}</p> */}
             </>
           ) : (
             <div className='flex items-center gap-x-5'>

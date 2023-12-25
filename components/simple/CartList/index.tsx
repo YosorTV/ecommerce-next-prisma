@@ -3,7 +3,7 @@
 import { FC } from 'react';
 
 import { cn } from '@/lib';
-import { useCart } from '@/store';
+import { useCart, useTheme } from '@/store';
 import { CartItemType } from '@/types';
 import { motion } from 'framer-motion';
 
@@ -11,12 +11,15 @@ import { CartItem } from '../CartItem';
 
 import { animCart } from '@/assets/animations';
 import { abril } from '@/assets/fonts';
-import { EmptyBasketIcon } from '@/assets/icons';
+import { Lottie } from '@/components/complex';
 import { Button, Title } from '@/components/elements';
 import { formatPrice, formatTotalAmount } from '@/helpers/formatters';
+// eslint-disable-next-line import/extensions
+import lottieAnim from '@/public/LottieEmpty.json';
 
 export const CartList: FC = () => {
   const cartStore = useCart();
+  const themeStore = useTheme();
 
   const handleBack = () => cartStore.onToggle();
 
@@ -35,8 +38,12 @@ export const CartList: FC = () => {
         >
           Return to shopping
         </Button>
-        <h2 className='absolute top-[30vh]'>Oops it`s empty ☹️</h2>
-        <EmptyBasketIcon width={246} height={246} />
+
+        <Lottie
+          text='Oops it`s empty ☹️'
+          src={lottieAnim}
+          playerClassName={themeStore.theme === 'sunset' && 'invert'}
+        />
       </motion.div>
     );
 

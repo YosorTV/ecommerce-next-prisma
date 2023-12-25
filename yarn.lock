@@ -296,6 +296,13 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
+"@lottiefiles/react-lottie-player@^3.5.3":
+  version "3.5.3"
+  resolved "https://registry.yarnpkg.com/@lottiefiles/react-lottie-player/-/react-lottie-player-3.5.3.tgz#e7e848f29577bc4eede87d677a0054de29378127"
+  integrity sha512-6pGbiTMjGnPddR1ur8M/TIDCiogZMc1aKIUbMEKXKAuNeYwZ2hvqwBJ+w5KRm88ccdcU88C2cGyLVsboFlSdVQ==
+  dependencies:
+    lottie-web "^5.10.2"
+
 "@mapbox/node-pre-gyp@^1.0.11":
   version "1.0.11"
   resolved "https://registry.yarnpkg.com/@mapbox/node-pre-gyp/-/node-pre-gyp-1.0.11.tgz#417db42b7f5323d79e93b34a6d7a2a12c0df43fa"
@@ -1149,6 +1156,14 @@ cross-spawn@^7.0.2, cross-spawn@^7.0.3:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
+css-selector-tokenizer@^0.8:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/css-selector-tokenizer/-/css-selector-tokenizer-0.8.0.tgz#88267ef6238e64f2215ea2764b3e2cf498b845dd"
+  integrity sha512-Jd6Ig3/pe62/qe5SBPTN8h8LeUg/pT4lLgtavPf7updwwHpvFzxvOQBHYj2LZDMjUnBzgvIUSjRcf6oT5HzHFg==
+  dependencies:
+    cssesc "^3.0.0"
+    fastparse "^1.1.2"
+
 cssesc@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/cssesc/-/cssesc-3.0.0.tgz"
@@ -1159,6 +1174,11 @@ csstype@^3.0.2:
   resolved "https://registry.npmjs.org/csstype/-/csstype-3.1.2.tgz"
   integrity sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==
 
+culori@^3:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/culori/-/culori-3.3.0.tgz#e33530adbd124d53bd6550394397e695eaaed739"
+  integrity sha512-pHJg+jbuFsCjz9iclQBqyL3B2HLCBF71BwVNujUYEvCeQMvV97R59MNK3R2+jgJ3a1fcZgI9B3vYgz8lzr/BFQ==
+
 d@1, d@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/d/-/d-1.0.1.tgz"
@@ -1166,6 +1186,16 @@ d@1, d@^1.0.1:
   dependencies:
     es5-ext "^0.10.50"
     type "^1.0.1"
+
+daisyui@^4.4.23:
+  version "4.4.23"
+  resolved "https://registry.yarnpkg.com/daisyui/-/daisyui-4.4.23.tgz#f2ce1b5eb6c95422e72e5c954a2c0af6bfb65ef0"
+  integrity sha512-IFQRGoGoAke8chxPcDqQJFldVVd51JL7b4mRA3LqsLexW/6xicZzz9X3GXdGdnYsu8QPxZN4uzQZ5fwRNYXOSg==
+  dependencies:
+    css-selector-tokenizer "^0.8"
+    culori "^3"
+    picocolors "^1"
+    postcss-js "^4"
 
 damerau-levenshtein@^1.0.8:
   version "1.0.8"
@@ -1773,6 +1803,11 @@ fast-levenshtein@^2.0.6:
   version "2.0.6"
   resolved "https://registry.npmjs.org/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz"
   integrity sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==
+
+fastparse@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/fastparse/-/fastparse-1.1.2.tgz#91728c5a5942eced8531283c79441ee4122c35a9"
+  integrity sha512-483XLLxTVIwWK3QTrMGRqUfUpoOs/0hbQrl2oz4J0pAcm3A3bu84wxTFqGqkJzewCLdME38xJLJAxBABfQT8sQ==
 
 fastq@^1.6.0:
   version "1.15.0"
@@ -2521,6 +2556,11 @@ loose-envify@^1.1.0, loose-envify@^1.4.0:
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
 
+lottie-web@^5.10.2:
+  version "5.12.2"
+  resolved "https://registry.yarnpkg.com/lottie-web/-/lottie-web-5.12.2.tgz#579ca9fe6d3fd9e352571edd3c0be162492f68e5"
+  integrity sha512-uvhvYPC8kGPjXT3MyKMrL3JitEAmDMp30lVkuq/590Mw9ok6pWcFCwXJveo0t5uqYw1UREQHofD+jVpdjBv8wg==
+
 lru-cache@^6.0.0:
   version "6.0.0"
   resolved "https://registry.npmjs.org/lru-cache/-/lru-cache-6.0.0.tgz"
@@ -2949,7 +2989,7 @@ path-type@^4.0.0:
   resolved "https://registry.npmjs.org/path-type/-/path-type-4.0.0.tgz"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
-picocolors@^1.0.0:
+picocolors@^1, picocolors@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/picocolors/-/picocolors-1.0.0.tgz"
   integrity sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==
@@ -2978,7 +3018,7 @@ postcss-import@^15.1.0:
     read-cache "^1.0.0"
     resolve "^1.1.7"
 
-postcss-js@^4.0.1:
+postcss-js@^4, postcss-js@^4.0.1:
   version "4.0.1"
   resolved "https://registry.npmjs.org/postcss-js/-/postcss-js-4.0.1.tgz"
   integrity sha512-dDLF8pEO191hJMtlHFPRa8xsizHaM82MLfNkUHdUtVEV3tgTp5oj+8qbEqYM57SLfc74KSbw//4SeJma2LRVIw==

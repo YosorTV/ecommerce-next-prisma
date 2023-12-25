@@ -7,7 +7,7 @@ import { ShoppingCart } from '../ShoppingCart';
 
 export const Header: FC<HeaderProps> = ({ navigation, user }) => {
   return (
-    <header className='fixed left-0 top-0 z-50 w-full'>
+    <header className='fixed left-0 top-0 z-50 w-full bg-base-100'>
       <Navbar params={navigation} user={user} />
       <ShoppingCart />
     </header>

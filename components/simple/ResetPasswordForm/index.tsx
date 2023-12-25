@@ -29,6 +29,7 @@ export const ResetPasswordForm: FC = () => {
         Reset password
       </Title>
       <Form
+        id='reset-form'
         schema={schemas['reset-password']}
         onSubmit={onSubmit}
         className='flex flex-col gap-y-5'
@@ -41,7 +42,7 @@ export const ResetPasswordForm: FC = () => {
         />
         <Button
           variant='basic'
-          className='rounded-full border-none bg-teal-700 py-2.5 font-medium text-white hover:bg-teal-800'
+          className='btn rounded-none border-none bg-primary py-2.5 font-medium text-white'
         >
           Reset
         </Button>

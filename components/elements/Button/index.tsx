@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 
 import { ButtonComponentType, ButtonProps } from '@/types';
 
@@ -17,8 +17,8 @@ export const Button: FC<ButtonProps> = ({
   ...rest
 }) => {
   const Buttons: ButtonComponentType = {
-    signIn: <SignInBtn className={className} />,
-    signOut: <SignOutBtn className={className} />,
+    signIn: <SignInBtn className={className} {...rest} />,
+    signOut: <SignOutBtn className={className} {...rest} />,
     text: (
       <TextButton onClick={onClick} className={className}>
         {children}
@@ -30,7 +30,7 @@ export const Button: FC<ButtonProps> = ({
       </IconBtn>
     ),
     basic: (
-      <DefaultBtn {...rest} type={type} onClick={onClick} className={className}>
+      <DefaultBtn type={type} onClick={onClick} className={className} {...rest}>
         {children}
       </DefaultBtn>
     ),

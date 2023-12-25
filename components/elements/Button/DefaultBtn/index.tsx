@@ -21,7 +21,7 @@ export const DefaultBtn: FC<ButtonProps> = ({
     <button
       onClick={onClick}
       className={cn(
-        'flex min-w-btn items-center justify-center border border-gray-300 bg-gray-800 px-2 py-3 text-lg font-medium text-white outline-none transition-colors ease-linear hover:bg-gray-950',
+        'btn-primary btn flex min-w-btn items-center justify-center px-2 py-3 text-lg font-medium text-white outline-none transition-all ease-linear',
         lobster.className,
         className
       )}

@@ -8,3 +8,4 @@ export * from '@/components/elements/Icon';
 export * from '@/components/elements/Badge';
 export * from '@/components/elements/Hydrate';
 export * from '@/components/elements/LoopedText';
+export * from '@/components/elements/Order';

@@ -16,10 +16,7 @@ export const LoopedText = ({
     <AnimatePresence mode='wait'>
       <motion.div
         layout='position'
-        className={cn(
-          'overflow-hidden whitespace-nowrap text-9xl',
-          imbue.className
-        )}
+        className={cn('w-full whitespace-nowrap text-9xl', imbue.className)}
       >
         {Array.from({ length: repeat }).map((_, index) => (
           <motion.span

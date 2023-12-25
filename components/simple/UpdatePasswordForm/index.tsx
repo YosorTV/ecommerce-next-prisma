@@ -27,6 +27,7 @@ export const UpdatePasswordForm: FC = () => {
 
   return (
     <Form
+      id='update-form'
       schema={schemas['update-password']}
       onSubmit={onSubmit}
       className='flex flex-col gap-y-5'
@@ -45,7 +46,7 @@ export const UpdatePasswordForm: FC = () => {
       />
       <Button
         variant='basic'
-        className='rounded-full border-none bg-teal-700 py-2.5 font-medium text-white hover:bg-teal-800'
+        className='btn rounded-none border-none bg-primary py-2.5 font-medium text-white'
       >
         Update
       </Button>

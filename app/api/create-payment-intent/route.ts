@@ -20,10 +20,17 @@ export async function POST(request: NextRequest) {
   const orderData = {
     user: { connect: { id: session.user.id } },
     amount: totalPrice,
+    paymentIntentID: paymentIntentId,
     currency: 'usd',
     status: 'pending',
     products: {
-      create: items,
+      create: items.map((item: any) => ({
+        name: item.name,
+        description: item.description || null,
+        unit_amount: item.unit_amount,
+        image: item.image,
+        quantity: item.quantity,
+      })),
     },
   };
 
@@ -39,61 +46,70 @@ export async function POST(request: NextRequest) {
           { amount: totalPrice }
         );
 
-        const existedOrder = await prisma.order.findUnique({
-          where: { paymentIntentId: updatedIntent.id },
-          include: { products: true },
-        });
+        const existedOrder = await Promise.all([
+          prisma.order.findFirst({
+            where: { paymentIntentID: updatedIntent.id },
+            include: { products: true },
+          }),
 
-        if (existedOrder) {
-          await prisma.order.update({
-            where: { paymentIntentId: updatedIntent.id },
+          prisma.order.update({
+            where: { paymentIntentID: updatedIntent.id },
             data: {
               amount: totalPrice,
               products: {
                 deleteMany: {},
-                create: items,
+                create: items.map((item: any) => ({
+                  name: item.name,
+                  description: item.description || null,
+                  unit_amount: item.unit_amount,
+                  image: item.image,
+                  quantity: item.quantity,
+                })),
               },
             },
-          });
+          }),
+        ]);
 
-          return NextResponse.json(
-            { message: 'Success', data: updatedIntent },
-            { status: 200 }
-          );
+        if (!existedOrder) {
+          throw Error('Invalid payment intent');
         }
-      }
-    } catch (e) {
-      return NextResponse.json(
-        { message: 'Invalid payment intent' },
-        { status: 400 }
-      );
-    }
-  } else {
-    // Create a new order
-    try {
-      const paymentIntent = await stripe.paymentIntents.create({
-        currency: 'usd',
-        amount: totalPrice,
-        automatic_payment_methods: { enabled: true },
-      });
 
-      await prisma.product.deleteMany();
-
-      const newOrder = await prisma.order.create({
-        data: {
-          ...orderData,
-          paymentIntentId: paymentIntent.id,
-        },
-      });
-
-      if (newOrder) {
         return NextResponse.json(
-          { message: 'Success', data: paymentIntent },
+          { message: 'Success', data: updatedIntent },
           { status: 200 }
         );
       }
     } catch (e) {
-      return NextResponse.json({ message: 'Error' }, { status: 400 });
+      return NextResponse.json(
+        { message: e.message, data: null },
+        { status: 400 }
+      );
     }
+  }
+
+  // await prisma.product.deleteMany();
+
+  const paymentIntent = await stripe.paymentIntents.create({
+    currency: 'usd',
+    amount: totalPrice,
+    automatic_payment_methods: { enabled: true },
+  });
+
+  orderData.paymentIntentID = paymentIntent.id;
+
+  try {
+    await prisma.order.create({
+      data: orderData,
+    });
+
+    return NextResponse.json(
+      { message: 'Order created', data: paymentIntent },
+      { status: 200 }
+    );
+  } catch (e) {
+    return NextResponse.json(
+      { message: 'Error creating order', data: null },
+      { status: 400 }
+    );
   }
 }

@@ -13,6 +13,7 @@ export const SignUpForm = () => {
 
   return (
     <Form
+      id='signup-form'
       onSubmit={onSubmit}
       schema={schemas.signup}
       className='flex w-full flex-col gap-5'
@@ -56,7 +57,7 @@ export const SignUpForm = () => {
         </p>
         <Button
           variant='basic'
-          className='rounded-full border-none bg-teal-700 py-2.5 font-medium text-white hover:bg-teal-800'
+          className='btn rounded-none border-none  bg-primary py-2.5 font-medium text-white'
         >
           Create an account
         </Button>

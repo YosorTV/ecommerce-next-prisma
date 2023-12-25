@@ -13,7 +13,7 @@ export async function BaseLayout({
   return (
     <html lang='en'>
       <head />
-      <body className={cn('mx-4 overflow-x-clip', roboto.className)}>
+      <body className={cn('h-full overflow-y-auto', roboto.className)}>
         <Header user={session?.user} navigation={navigation} />
         {children}
         <Footer page={page} />

@@ -21,7 +21,7 @@ export const TextButton: FC<ButtonProps> = ({
     <button
       onClick={onClick}
       className={cn(
-        'flex min-w-btn items-center justify-start text-2xl text-gray-900 underline',
+        'flex min-w-btn items-center justify-start text-2xl underline',
         lobster.className,
         className
       )}

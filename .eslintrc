@@ -64,6 +64,7 @@
         "props": false
       }
     ],
+    "jsx-a11y/no-noninteractive-tabindex": "off",
     "eslint-comments/disable-enable-pair": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-unused-vars": ["error"],

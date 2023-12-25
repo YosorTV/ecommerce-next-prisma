@@ -15,10 +15,10 @@ export const config = {
 
 export async function POST(request: NextRequest) {
   const body = await request.text();
-  const sig = headers().get('stripe-signature');
+  const signature = headers().get('stripe-signature');
   const secret = process.env.STRIPE_WEBHOOK_SECRET!;
 
-  if (!sig || !secret) {
+  if (!signature || !secret) {
     return NextResponse.json(
       { message: 'Missing the stripe signature' },
       { status: 404 }
@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
   try {
     const event: Stripe.Event = stripe.webhooks.constructEvent(
       body,
-      sig,
+      signature,
       secret
     );
 
@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
 
         if (typeof charge.payment_intent === 'string') {
           await prisma.order.update({
-            where: { paymentIntentId: charge.payment_intent },
+            where: { paymentIntentID: charge.payment_intent },
             data: { status: 'completed' },
           });
         }

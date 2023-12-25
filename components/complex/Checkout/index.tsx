@@ -2,13 +2,18 @@
 
 import { FC, useCallback, useEffect, useState } from 'react';
 
-import { useCart } from '@/store';
+import { useCart, useTheme } from '@/store';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe, StripeElementsOptions } from '@stripe/stripe-js';
+import { AnimatePresence, motion } from 'framer-motion';
+
+import { Lottie } from '../Lottie';
 
 import { Button } from '@/components/elements';
 import { CheckoutForm } from '@/components/simple';
 import { formatTotalAmount } from '@/helpers/formatters';
+// eslint-disable-next-line import/extensions
+import lottieAnim from '@/public/LottieConfirmed.json';
 import { getIntentId } from '@/services/checkout';
 
 const stripePromise = loadStripe(process.env.STRIPE_PUBLISH_KEY);
@@ -17,6 +22,7 @@ export const Checkout: FC = () => {
   const [secret, setSecret] = useState<string | null>(null);
   /* Store */
   const cartStore = useCart();
+  const themeStore = useTheme();
   /* Stripe */
 
   const { totalPrice } = formatTotalAmount(cartStore.cart);
@@ -43,7 +49,7 @@ export const Checkout: FC = () => {
   const options: StripeElementsOptions = {
     clientSecret: secret,
     appearance: {
-      theme: 'stripe',
+      theme: themeStore.theme === 'light' ? 'stripe' : 'night',
       labels: 'floating',
     },
   };
@@ -58,11 +64,17 @@ export const Checkout: FC = () => {
       >
         Back to cart
       </Button>
-      {secret && (
-        <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm secret={secret} totalPrice={totalPrice} />
-        </Elements>
-      )}
+      <AnimatePresence mode='wait'>
+        {secret ? (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            <Elements options={options} stripe={stripePromise}>
+              <CheckoutForm secret={secret} totalPrice={totalPrice} />
+            </Elements>
+          </motion.div>
+        ) : (
+          <Lottie src={lottieAnim} text='Preparing your order 🛒' />
+        )}
+      </AnimatePresence>
     </section>
   );
 };

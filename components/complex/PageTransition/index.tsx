@@ -2,6 +2,7 @@
 
 import { FC, ReactNode, useEffect } from 'react';
 
+import { useTheme } from '@/store';
 import { AnimatePresence, motion } from 'framer-motion';
 import { usePathname, useRouter } from 'next/navigation';
 import { Session } from 'next-auth';
@@ -14,6 +15,11 @@ interface ILayoutProps {
 export const PageTransition: FC<ILayoutProps> = ({ children, session }) => {
   const router = useRouter();
   const path = usePathname();
+  const themeStore = useTheme();
+
+  useEffect(() => {
+    document.querySelector('html').setAttribute('data-theme', themeStore.theme);
+  }, [themeStore.theme]);
 
   useEffect(() => {
     return () => {
@@ -27,9 +33,17 @@ export const PageTransition: FC<ILayoutProps> = ({ children, session }) => {
       <motion.main
         key={path}
         layout='position'
-        className='container relative top-16 flex min-h-[87vh] flex-col'
+        className='flex h-full w-full flex-col'
       >
-        <div className='flex-1 flex-grow'>{children}</div>
+        <motion.div
+          className='flex-1 flex-grow py-20'
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+        >
+          {children}
+        </motion.div>
 
         <motion.div
           className='slide-in'
