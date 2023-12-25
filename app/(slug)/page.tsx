@@ -10,7 +10,7 @@ export default async function RootPage() {
   return (
     <div className='flex flex-col'>
       <div className='flex items-center justify-center gap-x-5 overflow-hidden'>
-        <LoopedText text='dropsor' repeat={12} />
+        <LoopedText text='dropsor' repeat={16} />
       </div>
 
       <div className='container pt-5 text-center'>

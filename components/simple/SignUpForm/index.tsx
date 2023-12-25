@@ -4,11 +4,18 @@ import { signUp } from '@/services';
 import Link from 'next/link';
 
 import { Button, Form, Input } from '@/components/elements';
+import { toaster } from '@/lib/toast';
 import { schemas } from '@/lib/yup';
 
 export const SignUpForm = () => {
   const onSubmit = async (data: any) => {
-    await signUp({ data });
+    const res = await signUp({ data });
+
+    if (!res.error) {
+      toaster({ key: 'success', message: res.message });
+    } else {
+      toaster({ key: 'error', message: res.message });
+    }
   };
 
   return (

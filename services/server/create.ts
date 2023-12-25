@@ -8,7 +8,7 @@ type UserData = {
     id: string;
     name: string;
     email: string;
-    password: string;
+    password?: string;
   };
 };
 
@@ -27,11 +27,12 @@ export const createUserData = async ({ data }: UserData) => {
       data: {
         provider: 'supabase',
         type: 'creadentials',
-        id: data.id,
-        providerAccountId: data.id,
+        id: customer.id,
+        providerAccountId: customer.id,
         user: {
           create: {
             ...data,
+            id: customer.id,
             stripeCustomerId: customer.id,
           },
         },

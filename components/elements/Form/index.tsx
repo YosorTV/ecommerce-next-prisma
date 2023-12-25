@@ -15,10 +15,16 @@ export const Form: FC<FormProps<any>> = ({
   ...rest
 }) => {
   const methods = useHookFormParams({ state, schema });
+
+  const submitHandler = (data: any) => {
+    rest?.onSubmit(data);
+    methods.reset();
+  };
+
   return (
     <FormProvider {...methods}>
       <form
-        onSubmit={methods.handleSubmit(rest?.onSubmit)}
+        onSubmit={methods.handleSubmit(submitHandler)}
         className={className}
       >
         {React.Children.map(children, (child, index) => {

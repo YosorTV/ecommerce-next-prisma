@@ -4,9 +4,9 @@ import { Avatar, Button, Hydrate, ThemeChange } from '@/components';
 import { cn } from '@/lib';
 import Image from 'next/image';
 import Link from 'next/link';
+
 import { abril } from '@/assets/fonts';
 import { ShoppingIcon } from '@/assets/icons/ShoppingIcon';
-
 // eslint-disable-next-line import/extensions
 import Logo from '@/public/DSLogo.svg';
 
@@ -16,7 +16,7 @@ export const Navbar: FC<any> = ({ user, params = [] }) => {
       href={href}
       key={href}
       className={cn(
-        'text-xl text-gray-950 underline',
+        'text-xl text-base-200 underline',
         abril.className,
         className
       )}
@@ -39,13 +39,22 @@ export const Navbar: FC<any> = ({ user, params = [] }) => {
           </Hydrate>
           {user ? (
             <>
-              {user.avatar && (
+              {user.name && (
                 <div className='dropdown-end dropdown flex cursor-pointer items-center justify-center gap-5'>
-                  <Avatar
-                    path={user.avatar}
-                    alt={`${user.name}-logo`}
-                    tabIndex={-1}
-                  />
+                  {user.avatar ? (
+                    <Avatar
+                      path={user.avatar}
+                      alt={`${user.name}-logo`}
+                      tabIndex={-1}
+                    />
+                  ) : (
+                    <div
+                      tabIndex={-1}
+                      className='shadow-avatar flex h-10 w-10 items-center justify-center rounded-full bg-secondary p-2.5 font-bold'
+                    >
+                      <p className='text-base-300'>{user.name[0]}</p>
+                    </div>
+                  )}
                   <ul
                     tabIndex={0}
                     className='dropdown-content menu top-12 min-w-btn space-y-2.5 rounded-sm bg-base-100 shadow'
@@ -67,7 +76,6 @@ export const Navbar: FC<any> = ({ user, params = [] }) => {
                   </ul>
                 </div>
               )}
-              {/* <p>{user.name}</p> */}
             </>
           ) : (
             <div className='flex items-center gap-x-5'>

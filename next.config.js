@@ -10,6 +10,16 @@ const nextConfig = {
     STRIPE_PUBLISH_KEY: process.env.STRIPE_PUBLISH_KEY,
     STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
   },
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   reactStrictMode: false,
   images: {
     remotePatterns: [

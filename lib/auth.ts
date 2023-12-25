@@ -14,7 +14,9 @@ import { sessionAdapter, tokenAdapter } from '@/adapters/auth';
 export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   adapter: PrismaAdapter(prisma) as Adapter,
-  session: { strategy: 'jwt' },
+  session: {
+    strategy: 'jwt',
+  },
   pages: { signIn: '/login' },
   providers: [
     Credentials({
@@ -38,12 +40,12 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   events: {
-    signIn: async ({ user }) => {
-      if (user.id) {
+    signIn: async ({ user, account }) => {
+      if (user.id && account.provider !== 'google') {
         await prisma.account.update({
           where: {
             provider_providerAccountId: {
-              provider: 'supabase',
+              provider: 'email',
               providerAccountId: user.id,
             },
           },

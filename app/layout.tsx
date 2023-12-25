@@ -16,6 +16,7 @@ export const metadata = {
 
 export default async function RootLayout({ children }: RootLayoutProps) {
   const session = await getServerSession(authOptions);
+
   const { page } = getPageName();
 
   const navigation = getNavigation(page);

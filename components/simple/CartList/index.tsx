@@ -85,7 +85,6 @@ export const CartList: FC = () => {
         >
           Here is your shopping list
         </Title>
-
         {cartStore.cart.map(printCartItem)}
       </div>
       <motion.div layout className='flex flex-col gap-2.5'>

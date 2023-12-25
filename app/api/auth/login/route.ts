@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(rest, { status });
   }
 
-  if (data.session.provider === 'supabase') {
+  if (data.session.provider === 'email') {
     const passwordMatch = await compare(
       credentials.password,
       data.user.password
@@ -47,4 +47,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(rest, { status });
   }
+
+  const { message, status } = signInResponseAdapter({ key: 'error' });
+  return NextResponse.json({ message, status: 500 }, { status });
 }

@@ -8,6 +8,7 @@ export async function GET() {
 
   try {
     const { data } = <Awaited<any>>await stripe.products.list();
+
     if (data) {
       const products = await productsAdapter({ data });
 

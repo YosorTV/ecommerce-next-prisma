@@ -39,6 +39,7 @@ model Session {
 model User {
   id               String    @id @default(cuid())
   name             String?
+  password         String?
   email            String?   @unique
   emailVerified    DateTime?
   image            String?
@@ -69,6 +70,7 @@ model Product {
   quantity    Float   @default(0)
   orders      Order[]
 }
+
 model VerificationToken {
   identifier String
   token      String   @unique
