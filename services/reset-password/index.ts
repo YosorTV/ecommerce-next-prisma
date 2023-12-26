@@ -2,7 +2,7 @@ import { postData } from '@/lib/fetch';
 
 export const resetPassword = async ({ data }: any) => {
   const response = await postData(
-    'http://localhost:3000/api/auth/reset-password',
+    `${process.env.NEXT_PUBLIC_API_URL}/api/auth/reset-password`,
     data
   );
 
