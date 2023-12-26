@@ -4,6 +4,4 @@ const globalPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;
 };
 
-const prisma = globalPrisma.prisma ?? new PrismaClient();
-
-export { prisma };
+export const prisma = globalPrisma.prisma ?? new PrismaClient();
