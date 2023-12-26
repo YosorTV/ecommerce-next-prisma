@@ -6,8 +6,7 @@ import { Button } from '@/components/elements';
 
 export const SignInProviders = () => {
   const handleGoogle = async () => {
-    const res = await signIn('google', { callbackUrl: '/' });
-    console.log('res: ', res);
+    await signIn('google', { callbackUrl: '/' });
   };
   return (
     <div className='flex flex-col items-center justify-center gap-5'>
