@@ -8,7 +8,7 @@ import { formatPrice } from '@/helpers/formatters';
 
 export const ProductDetails: FC<ProductDetailsProps> = ({ data }) => {
   const cartData = {
-    id: data.id,
+    id: data.id || `${Math.random()}`,
     image: data.images,
     name: data.name,
     unit_amount: Number(data.unit_amount),
