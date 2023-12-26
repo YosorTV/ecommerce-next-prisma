@@ -12,6 +12,8 @@ export async function POST(request: NextRequest) {
   const signature = headers().get('stripe-signature');
   const secret = process.env.STRIPE_WEBHOOK_SECRET!;
 
+  console.log('signature: ', signature);
+
   if (!signature || !secret) {
     return NextResponse.json(
       { message: 'Missing the stripe signature' },

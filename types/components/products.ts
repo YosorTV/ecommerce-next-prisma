@@ -11,8 +11,9 @@ export type ProductListProps = {
 };
 
 export type ProductDetailsProps = {
+  id?: string;
   data: {
-    id: string;
+    id?: string;
     name: string;
     images: string;
     unit_amount: string | number | null;

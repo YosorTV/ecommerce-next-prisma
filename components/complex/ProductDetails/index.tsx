@@ -6,9 +6,9 @@ import Image from 'next/image';
 
 import { formatPrice } from '@/helpers/formatters';
 
-export const ProductDetails: FC<ProductDetailsProps> = ({ data }) => {
+export const ProductDetails: FC<ProductDetailsProps> = ({ data, id }) => {
   const cartData = {
-    id: data.id!,
+    id: id ?? data.id,
     image: data.images,
     name: data.name,
     unit_amount: Number(data.unit_amount),
