@@ -8,7 +8,9 @@ import { getOrderList } from '@/services/orders';
 export default async function DashboardPage() {
   const session = await getServerSession(authOptions);
 
-  const orders = await getOrderList({ userId: session.user.id });
+  const orders = await getOrderList({ userId: session?.user?.id });
+
+  if (!session?.user) return <p>UNAUTHORIZED</p>;
 
   return (
     <div className='flex flex-col gap-y-10'>

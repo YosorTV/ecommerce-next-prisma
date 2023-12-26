@@ -16,7 +16,7 @@ import { formatTotalAmount } from '@/helpers/formatters';
 import lottieAnim from '@/public/LottieConfirmed.json';
 import { getIntentId } from '@/services/checkout';
 
-const stripePromise = loadStripe(process.env.STRIPE_PUBLISH_KEY as string);
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISH_KEY!);
 
 export const Checkout: FC = () => {
   const [secret, setSecret] = useState<string | null>(null);
