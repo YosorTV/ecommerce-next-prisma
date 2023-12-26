@@ -8,7 +8,7 @@ import { formatPrice } from '@/helpers/formatters';
 
 export const ProductDetails: FC<ProductDetailsProps> = ({ data }) => {
   const cartData = {
-    id: data.id || `${Math.random()}`,
+    id: data.id!,
     image: data.images,
     name: data.name,
     unit_amount: Number(data.unit_amount),
@@ -31,7 +31,7 @@ export const ProductDetails: FC<ProductDetailsProps> = ({ data }) => {
         </div>
         <div className='flex gap-2'>
           <p className='font-bold text-primary'>
-            {formatPrice(data.unit_amount)}
+            {formatPrice(cartData.unit_amount)}
           </p>
         </div>
         <AddCart data={cartData} />

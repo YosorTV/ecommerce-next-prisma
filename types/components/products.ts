@@ -12,10 +12,10 @@ export type ProductListProps = {
 
 export type ProductDetailsProps = {
   data: {
-    name: string;
-    unit_amount: number | null;
-    description?: string;
-    images: string;
     id: string;
+    name: string;
+    images: string;
+    unit_amount: string | number | null;
+    description?: string;
   };
 };
