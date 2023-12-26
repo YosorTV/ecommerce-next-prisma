@@ -8,12 +8,12 @@ import { AddCartProps } from '@/types';
 import { Button } from '@/components/elements';
 
 export const AddCart: FC<AddCartProps> = ({ data }) => {
-  const { onAdd } = useCart();
+  const cartStore = useCart();
 
   const [added, setAdded] = useState(false);
 
   const handleAdd = () => {
-    onAdd(data);
+    cartStore.onAdd(data);
     setAdded(true);
     setTimeout(() => {
       setAdded(false);
