@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+.env
 
 # testing
 /coverage
@@ -42,7 +43,4 @@ next-env.d.ts
 /public/sitemap.xml
 /public/sitemap*.xml
 
-.env
-.env.example
-.env.local
-.env.staging
+
