@@ -7,7 +7,7 @@ import { stripeApi } from '@/lib/stripe';
 
 const { stripe } = stripeApi();
 
-export const runtime = 'nodejs';
+// export const runtime = 'edge';
 
 export async function POST(request: NextRequest) {
   const body = await request.text();

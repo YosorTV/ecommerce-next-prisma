@@ -5,8 +5,6 @@ import { getServerSession } from 'next-auth';
 import { abril } from '@/assets/fonts';
 import { getOrderList } from '@/services/orders';
 
-export const revalidate = 0;
-
 export default async function DashboardPage() {
   const session = await getServerSession(authOptions);
 
